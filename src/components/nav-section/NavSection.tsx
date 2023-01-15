@@ -11,7 +11,7 @@ interface NavSectionProps {
   data: Array<NavItem>;
 }
 
-export default function NavSection({ data = [], ...other }) {
+export default function NavSection({ data = [], ...other }: NavSectionProps) {
   return (
     <Box {...other}>
       <List disablePadding sx={{ p: 1 }}>
@@ -41,8 +41,8 @@ function NavItem({ item }: NavItemProps) {
 
   return (
     <StyledNavItem
-      component={RouterLink}
-      to={path}
+      // component={RouterLink}
+      // to={path}
       sx={{
         "&.active": {
           color: "text.primary",
