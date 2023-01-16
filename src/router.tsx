@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Incoming /> },
       { path: "out", element: <div> output letter </div> },
-      { path: "paperin", element: <div> paper letter </div> },
+      { path: "paper-in", element: <div> paper letter </div> },
     ],
   },
 ]);

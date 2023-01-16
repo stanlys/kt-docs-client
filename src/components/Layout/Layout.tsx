@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Nav from "./nav";
+import StickyFooter from "../footer/Footer";
+import Dashboard from "../Testt/Testt";
 
 // ----------------------------------------------------------------------
 
@@ -33,15 +35,19 @@ const Layout = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <StyledRoot>
-      {/* <Header onOpenNav={() => setOpen(true)} /> */}
+    <>
+      <Dashboard />
+      {/* <StyledRoot>
+         <Header onOpenNav={() => setOpen(true)} />
 
-      <Nav openNav={open} onCloseNav={() => setOpen(false)} />
+        <Nav openNav={open} onCloseNav={() => setOpen(false)} />
 
-      <Main>
-        <Outlet />
-      </Main>
-    </StyledRoot>
+        <Main>
+          <Outlet />
+        </Main>
+      </StyledRoot> */}
+      <StickyFooter />
+    </>
   );
 };
 

@@ -8,12 +8,12 @@ import { SystemProps } from "@mui/system";
 
 // ----------------------------------------------------------------------
 
-interface Logo.propTypes = {
-  sx: PropTypes.object,
-  disabledLink: PropTypes.bool,
+interface LogoPropTypes{
+  sx: typeof PropTypes.object,
+  disabledLink: boolean,
 };
 
-const Logo = forwardRef(({ disabledLink = false, sx, ...other }: SystemProps, ref) => {
+const Logo = forwardRef(({ disabledLink = false, sx, ...other }: LogoPropTypes, ref) => {
   const theme = useTheme();
 
   const PRIMARY_LIGHT = theme.palette.primary.light;
