@@ -154,18 +154,19 @@ function DashboardContent() {
         <Box
           component="main"
           sx={{
+            mt: 0,
             backgroundColor: (theme) =>
               theme.palette.mode === "light"
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
             flexGrow: 1,
-            overflow: "auto",
+            overflow: "none",
             height: "90vh",
           }}
         >
           <Toolbar />
-          <Box sx={{ mt: 3, idth: "100%", minHeight: "90%", overflow: "auto" }}>
-            <Paper sx={{ minWidth: "100%", minHeight: "100%" }}>
+          <Box sx={{ m: 3, idth: "100%", minHeight: "90%" }}>
+            <Paper sx={{ minWidth: "100%", minHeight: "77vh" }}>
               Pltcm nf,kbwf
             </Paper>
           </Box>

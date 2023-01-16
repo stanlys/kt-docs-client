@@ -30,6 +30,12 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Почта" />
     </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Договора" />
+    </ListItemButton>
   </React.Fragment>
 );
 
@@ -42,7 +48,13 @@ export const secondaryListItems = (
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Договора" />
+      <ListItemText primary="Реестр адресов" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Курьеры " />
     </ListItemButton>
   </React.Fragment>
 );
