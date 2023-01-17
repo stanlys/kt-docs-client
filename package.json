@@ -14,6 +14,7 @@
     "@euxdt/grid-core": "^0.0.4",
     "@euxdt/grid-export": "^0.0.4",
     "@euxdt/grid-react": "^0.0.4",
+    "@inovua/reactdatagrid-community": "^5.8.1",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.4",
     "@mui/styled-engine-sc": "^5.11.0",
