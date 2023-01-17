@@ -19,6 +19,7 @@ import { mainListItems, secondaryListItems } from "../Nav/MenuItems";
 import StickyFooter from "../Footer/Footer";
 import { Outlet } from "react-router-dom";
 import Logo from "../Logo/Logo";
+import { GradientOutlined } from "@mui/icons-material";
 
 function Copyright(props: any) {
   return (
@@ -98,9 +99,26 @@ const DashboardContent = () => {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar position="absolute" open={open}>
+      <CssBaseline />
+      <Box
+        sx={{
+          display: "flex",
+          backgroundColor: (theme) =>
+            theme.palette.mode === "light"
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
+        }}
+      >
+        <Box sx={{ width: "20rem", m: 2 }}>
+          <Paper elevation={2}>
+            <List component="nav">
+              {mainListItems}
+              <Divider sx={{ my: 1 }} />
+              {secondaryListItems}
+            </List>
+          </Paper>
+        </Box>
+        {/* <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
               pr: "24px",
@@ -153,7 +171,7 @@ const DashboardContent = () => {
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
-        </Drawer>
+        </Drawer> */}
         <Box
           component="main"
           sx={{
@@ -164,12 +182,11 @@ const DashboardContent = () => {
                 : theme.palette.grey[900],
             flexGrow: 1,
             overflow: "none",
-            height: "90vh",
+            height: "93.5vh",
           }}
         >
-          <Toolbar />
-          <Box sx={{ m: 3, idth: "100%", minHeight: "90%" }}>
-            <Paper sx={{ minWidth: "100%", minHeight: "77vh" }}>
+          <Box sx={{ m: 2, width: "98%", minHeight: "90%" }}>
+            <Paper sx={{ minWidth: "100%", minHeight: "91vh" }}>
               <Outlet />
             </Paper>
           </Box>

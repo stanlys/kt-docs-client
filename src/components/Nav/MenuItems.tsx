@@ -10,8 +10,12 @@ export const mainListItems = (
   <>
     <MenuButton caption="Исходящие" link="/" icon={<OutboxIcon />} />
     <MenuButton caption="Входящие" link="out" icon={<MoveToInboxIcon />} />
-    <MenuButton caption="Почта" link="/" icon={<LocalShippingIcon />} />
-    <MenuButton caption="Договора" link="/" icon={<RequestPageIcon />} />
+    <MenuButton caption="Почта" link="/letter" icon={<LocalShippingIcon />} />
+    <MenuButton
+      caption="Договора"
+      link="/contract"
+      icon={<RequestPageIcon />}
+    />
   </>
 );
 

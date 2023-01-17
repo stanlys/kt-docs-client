@@ -20,6 +20,7 @@ function Copyright() {
 const StickyFooter = () => {
   return (
     <Box
+      maxHeight="sm"
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -34,14 +35,12 @@ const StickyFooter = () => {
           mt: "auto",
           backgroundColor: (theme) =>
             theme.palette.mode === "light"
-              ? theme.palette.grey[200]
+              ? theme.palette.grey[100]
               : theme.palette.grey[800],
         }}
       >
         <Container maxWidth="sm">
-          <Typography variant="body1">
-            Какие-то реквизиты 
-          </Typography>
+          <Typography variant="body1">Какие-то реквизиты</Typography>
           <Copyright />
         </Container>
       </Box>
