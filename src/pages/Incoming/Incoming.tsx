@@ -21,8 +21,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { getGlobal } from "@inovua/reactdatagrid-community/getGlobal";
 import moment from "moment";
 
-const globalObject = getGlobal();
-
 const columns: TypeColumn[] = [
   {
     name: "preview",
@@ -78,7 +76,10 @@ const columns: TypeColumn[] = [
     defaultFlex: 1,
     render: ({ data }) => {
       return (
-        <IconButton color="error">
+        <IconButton
+          color="error"
+          onClick={() => console.log("delete", data.outNumber)}
+        >
           <DeleteIcon />
         </IconButton>
       );
@@ -137,7 +138,7 @@ const Incoming = () => {
     },
     {
       name: "date",
-      operator: "after",
+      operator: "eq",
       type: "date",
       value: "",
     },
