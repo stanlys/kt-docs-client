@@ -63,8 +63,26 @@ const columns: TypeColumn[] = [
     },
   },
   { name: "inNumber", header: "№ Вх.", defaultFlex: 1 },
-  { name: "dateOrder", header: "Дата получения", defaultFlex: 1 },
-  { name: "letterType", header: "Тип", defaultFlex: 1 },
+  {
+    name: "dateOrder",
+    header: "Дата получения",
+    defaultFlex: 1,
+    dateFormat: "YYYY-MM-DD",
+    filterEditor: DateFilter,
+    filterEditorProps: {
+      dateFormat: "MM-DD-YYYY",
+      highlightWeekends: true,
+      placeholder: "введите дату",
+    },
+    render: ({ value }: { value: string }) => {
+      return moment(value).format("MM-DD-YYYY");
+    },
+  },
+  {
+    name: "letterType",
+    header: "Тип",
+    defaultFlex: 1,
+  },
   { name: "receiver", header: "Получатель", defaultFlex: 1 },
   { name: "sender", header: "Отправитель", defaultFlex: 1 },
   { name: "executor", header: "Исполнитель", defaultFlex: 1 },
@@ -142,7 +160,18 @@ const Incoming = () => {
       type: "date",
       value: "",
     },
+    {
+      name: "dateOrder",
+      operator: "eq",
+      type: "date",
+      value: "",
+    },
     { name: "outNumber", operator: "contains", type: "string", value: "" },
+    { name: "inNumber", operator: "contains", type: "string", value: "" },
+    { name: "executor", operator: "contains", type: "string", value: "" },
+    { name: "receiver", operator: "contains", type: "string", value: "" },
+    { name: "letterType", operator: "contains", type: "string", value: "" },
+    { name: "letterTitle", operator: "contains", type: "string", value: "" },
   ];
 
   return (
