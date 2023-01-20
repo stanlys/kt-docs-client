@@ -10,7 +10,7 @@ import Link from "@mui/material/Link";
 
 import StickyFooter from "../Footer/Footer";
 import { Outlet } from "react-router-dom";
-import Sidebar from "../Nav/Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 
 function Copyright(props: any) {
   return (
