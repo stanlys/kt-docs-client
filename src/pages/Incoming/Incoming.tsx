@@ -5,31 +5,22 @@ import ReactDataGrid from "@inovua/reactdatagrid-community";
 import { dataSource } from "../../MOCK/data";
 import { filterValue } from "../../components/Grid/InFilter";
 import { columns } from "../../components/Grid/InColumns";
+import LettersList from "../../components/Grid/LettersList";
 
 const Incoming = () => {
-  const gridStyle = { minHeight: "100%" };
+  const gridStyle = { minHeight: "100%", color: "#223133" };
 
   return (
     <Stack>
       <Box>
         <Button> Создать письмо </Button>
       </Box>
-      <Box height={"85vh"} sx={{ mt: 2 }}>
-        <ReactDataGrid
-          idProperty="id"
-          columns={columns}
-          dataSource={dataSource}
-          style={gridStyle}
-          sortable={true}
-          filterable={true}
-          defaultFilterValue={filterValue}
-          showEmptyRows={false}
-          // onColumnFilterValueChange={({ filterValue }) => {
-          //   console.log(filterValue);
-          // }}
-          groupBy={["date"]}
-        />
-      </Box>
+      <LettersList
+        columns={columns}
+        style={gridStyle}
+        data={dataSource}
+        filter={filterValue}
+      />
     </Stack>
   );
 };

@@ -1,10 +1,5 @@
 import ListSubheader from "@mui/material/ListSubheader";
 import MenuButton from "./MenuButton";
-
-import MoveToInboxIcon from "@mui/icons-material/MoveToInbox";
-import OutboxIcon from "@mui/icons-material/Outbox";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import RequestPageIcon from "@mui/icons-material/RequestPage";
 import { ADDITIONAL_MENU, MAIN_MENU } from "./menu";
 
 export const mainListItems = (

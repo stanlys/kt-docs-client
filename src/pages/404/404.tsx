@@ -6,25 +6,34 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ width: "100vh", height: "100vw" }}>
+    <Box sx={{ width: "100vw", height: "100vh" }}>
       <Box
         justifyContent={"center"}
         alignItems={"center"}
+        flexDirection={"column"}
         gap={2}
         sx={{
           display: "flex",
-          height: "100vw",
+          height: "100%",
         }}
       >
-        <Paper elevation={2} sx={{ p: 10 }}>
+        <Button fullWidth onClick={() => navigate(-1)}>
+          Назад
+        </Button>
+        <Paper
+          elevation={2}
+          sx={{
+            p: 10,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Box>
             <Typography variant="h3">404</Typography>
             <Divider sx={{ color: "gray", height: "1px" }} />
             <Typography variant="h5">ТАКОГО АДРЕСА НЕТ</Typography>
           </Box>
-          <Button fullWidth onClick={() => navigate(-1)}>
-            Назад
-          </Button>
         </Paper>
       </Box>
     </Box>
