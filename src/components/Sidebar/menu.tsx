@@ -1,10 +1,10 @@
 import OutboxIcon from "@mui/icons-material/Outbox";
-import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsIcon from "@mui/icons-material/Settings";
 import MoveToInboxIcon from "@mui/icons-material/MoveToInbox";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import RequestPageIcon from "@mui/icons-material/RequestPage";
-import PlaceIcon from '@mui/icons-material/Place';
-import SignpostIcon from '@mui/icons-material/Signpost';
+import PlaceIcon from "@mui/icons-material/Place";
+import SignpostIcon from "@mui/icons-material/Signpost";
 
 export interface MenuProps {
   link: string;
@@ -13,8 +13,8 @@ export interface MenuProps {
 }
 
 export const MAIN_MENU: MenuProps[] = [
-  { caption: "Исходящие", link: "/", icon: <MoveToInboxIcon /> },
-  { caption: "Входящие", link: "/out", icon: <OutboxIcon /> },
+  { caption: "Исходящие", link: "/", icon: <OutboxIcon /> },
+  { caption: "Входящие", link: "/out", icon: <MoveToInboxIcon /> },
   { caption: "Почта", link: "/letter", icon: <LocalShippingIcon /> },
   { caption: "Договора", link: "/contract", icon: <RequestPageIcon /> },
 ];

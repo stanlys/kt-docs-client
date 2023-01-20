@@ -9,16 +9,24 @@ export const columns: TypeColumn[] = [
   {
     name: "preview",
     header: "Просмотр",
-    maxWidth: 50,
+    maxWidth: 100,
     defaultFlex: 1,
     render: ({ data }) => {
       return (
-        <IconButton
-          color="primary"
-          onClick={() => console.log("Просмотр", data.outNumber)}
-        >
-          <PageviewIcon />
-        </IconButton>
+        <>
+          <IconButton
+            color="primary"
+            onClick={() => console.log("Просмотр", data.outNumber)}
+          >
+            <PageviewIcon />
+          </IconButton>
+          <IconButton
+            color="primary"
+            onClick={() => console.log("Просмотр", data.outNumber)}
+          >
+            <PageviewIcon />
+          </IconButton>
+        </>
       );
     },
   },
