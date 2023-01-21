@@ -1,4 +1,4 @@
-export const dataSource = [
+export const dataLetters = [
   {
     id: 1,
     date: Date.now(),
@@ -8,7 +8,7 @@ export const dataSource = [
     letterType: "Письмо",
     receiver: "ПАО Россети Центра - Ярэнерго",
     sender: "Писаренко В.Н.",
-    executor: "Челнаков С.А.",
+    address: "Челнаков С.А.",
     letterTitle: "Направление акта выполненных работ",
   },
   {
@@ -20,7 +20,7 @@ export const dataSource = [
     letterType: "Письмо",
     receiver: "ПАО Россети Центра - Смоленск",
     sender: "Писаренко В.Н.",
-    executor: "Маликов Д.А.",
+    address: "Маликов Д.А.",
     letterTitle: "Направление акта выполненных работ",
   },
   {
@@ -32,7 +32,7 @@ export const dataSource = [
     letterType: "Письмо",
     receiver: "ПАО Россети Центра - Смоленск",
     sender: "Писаренко В.Н.",
-    executor: "Маликов Д.А.",
+    address: "Маликов Д.А.",
     letterTitle: "Направление акта выполненных работ",
   },
 ];

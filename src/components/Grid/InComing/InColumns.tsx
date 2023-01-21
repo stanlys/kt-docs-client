@@ -3,33 +3,13 @@ import { IconButton } from "@mui/material";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DateFilter from "@inovua/reactdatagrid-community/DateFilter";
+import EditIcon from "@mui/icons-material/Edit";
 import moment from "moment";
+import { ActionEditPreview } from "../ActionEdit";
+import { ActionDelete } from "../ActionDelete";
 
 export const columns: TypeColumn[] = [
-  {
-    name: "preview",
-    header: "Просмотр",
-    maxWidth: 100,
-    defaultFlex: 1,
-    render: ({ data }) => {
-      return (
-        <>
-          <IconButton
-            color="primary"
-            onClick={() => console.log("Просмотр", data.outNumber)}
-          >
-            <PageviewIcon />
-          </IconButton>
-          <IconButton
-            color="primary"
-            onClick={() => console.log("Просмотр", data.outNumber)}
-          >
-            <PageviewIcon />
-          </IconButton>
-        </>
-      );
-    },
-  },
+  ...ActionEditPreview,
   {
     name: "outNumber",
     header: "№ Исх.",
@@ -79,20 +59,5 @@ export const columns: TypeColumn[] = [
   { name: "sender", header: "Отправитель", defaultFlex: 1 },
   { name: "executor", header: "Исполнитель", defaultFlex: 1 },
   { name: "letterTitle", header: "Содержание", defaultFlex: 1 },
-  {
-    name: "delete",
-    header: "Удалить",
-    maxWidth: 50,
-    defaultFlex: 1,
-    render: ({ data }) => {
-      return (
-        <IconButton
-          color="error"
-          onClick={() => console.log("delete", data.outNumber)}
-        >
-          <DeleteIcon />
-        </IconButton>
-      );
-    },
-  },
+  ...ActionDelete,
 ];
