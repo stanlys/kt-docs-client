@@ -8,7 +8,7 @@ export const mainListItems = (
       Реестры
     </ListSubheader>
     {MAIN_MENU.map(({ caption, icon, link }) => (
-      <MenuButton caption={caption} link={link} icon={icon} />
+      <MenuButton caption={caption} link={link} icon={icon} key={caption} />
     ))}
   </>
 );
@@ -19,7 +19,7 @@ export const secondaryListItems = (
       Дополнения
     </ListSubheader>
     {ADDITIONAL_MENU.map(({ caption, link, icon }) => (
-      <MenuButton caption={caption} link={link} icon={icon} />
+      <MenuButton caption={caption} link={link} icon={icon} key={caption} />
     ))}
   </>
 );

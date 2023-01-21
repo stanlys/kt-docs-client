@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import NotFound from "./pages/404/404";
 import Incoming from "./pages/Incoming/Incoming";
+import AddLetter from "./pages/Letter/AddLetter/AddLetter";
 import Letter from "./pages/Letter/Letter";
 import OutputLetter from "./pages/Output/Output";
 
@@ -13,7 +14,14 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Incoming /> },
       { path: "out", element: <OutputLetter /> },
-      { path: "letter", element: <Letter /> },
+      {
+        path: "letter",
+        element: <Letter />,
+      },
+      {
+        path: "addletter",
+        element: <AddLetter />,
+      },
     ],
   },
 ]);

@@ -1,5 +1,6 @@
 import { Box, Button, Stack } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import { filterValue } from "../../components/Grid/InComing/InFilter";
 import { columns } from "../../components/Grid/Letter/LetterColumns";
 import { filterLetters } from "../../components/Grid/Letter/LetterFilter";
@@ -11,7 +12,7 @@ const Letter = () => {
   return (
     <Stack>
       <Box>
-        <Button> Добавить отправление </Button>
+        <Link to="../addletter"> Добавить отправление </Link>
       </Box>
       <LettersList
         columns={columns}
