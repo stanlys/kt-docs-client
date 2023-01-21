@@ -3,14 +3,10 @@ import { useFormik } from "formik";
 import style from "./AddLetter.module.scss";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import React from "react";
-import {
-  DesktopDatePicker,
-  LocalizationProvider,
-  MuiPickersAdapterContext,
-} from "@mui/x-date-pickers";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import moment, { Moment } from "moment";
-import { ruRU } from "@mui/x-data-grid";
+import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import dayjs, { Dayjs } from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import "dayjs/locale/ru";
 
 const AddLetter = () => {
   const formAddPost = useFormik({
@@ -24,9 +20,9 @@ const AddLetter = () => {
     },
   });
 
-  const [date, setDate] = React.useState<Moment | null>(moment(Date.now()));
+  const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
 
-  const handleChange = (newValue: Moment | null) => {
+  const handleChange = (newValue: Dayjs | null) => {
     setDate(newValue);
   };
 
@@ -36,7 +32,7 @@ const AddLetter = () => {
       <Divider sx={{ mt: 2 }} />
 
       <Paper elevation={2} className={style.form}>
-        <LocalizationProvider dateAdapter={AdapterMoment} locale={"ru"}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"ru"}>
           <DesktopDatePicker
             label="Date desktop"
             inputFormat="DD.MM.YYYY"
