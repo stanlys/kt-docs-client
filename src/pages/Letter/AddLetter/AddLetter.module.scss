@@ -6,3 +6,10 @@
   padding: 2rem;
   width: 30rem;
 }
+
+.datePickerGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
