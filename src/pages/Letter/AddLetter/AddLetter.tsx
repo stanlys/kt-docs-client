@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useFormik, yupToFormErrors } from "formik";
+import { Form, useFormik, yupToFormErrors } from "formik";
 import style from "./AddLetter.module.scss";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import React from "react";
@@ -50,6 +50,9 @@ const AddLetter = () => {
     onSubmit: (values) => {
       console.log(values);
     },
+    // onReset: (value) => {
+    //   value.date = Date.now();
+    // },
   });
 
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
@@ -59,63 +62,92 @@ const AddLetter = () => {
   };
 
   return (
-    <Box component={"form"} onSubmit={formAddPost.submitForm}>
+    <Box>
       <Typography variant="h5"> Добавление нового отправления</Typography>
       <Divider sx={{ mt: 2 }} />
-
-      <Paper elevation={2} className={style.form}>
-        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"ru"}>
-          <Box className={style.datePickerGroup}>
-            <DesktopDatePicker
-              label="Дата отправки"
-              inputFormat="DD.MM.YYYY"
-              value={formAddPost.values.date}
-              onChange={formAddPost.handleChange}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  sx={{ width: 250 }}
-                  helperText={formAddPost.errors.date}
-                  error={
-                    (formAddPost.touched.date &&
-                      formAddPost.errors.date) as boolean
-                  }
-                />
-              )}
+      <Box component={"form"}>
+        <Paper elevation={2} className={style.form}>
+          <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"ru"}>
+            <Box className={style.datePickerGroup}>
+              <DesktopDatePicker
+                label="Дата отправки"
+                inputFormat="DD.MM.YYYY"
+                value={formAddPost.values.date}
+                onChange={formAddPost.handleChange}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    sx={{ width: 250 }}
+                    helperText={formAddPost.errors.date}
+                    error={
+                      formAddPost.touched && Boolean(formAddPost.errors.date)
+                    }
+                  />
+                )}
+              />
+              <Button
+                onClick={() =>
+                  formAddPost.setFieldValue(
+                    "date",
+                    dayjs(Date.now()).add(-1, "day"),
+                    false
+                  )
+                }
+              >
+                Вчера
+              </Button>
+            </Box>
+          </LocalizationProvider>
+          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+            <ShareLocationIcon
+              sx={{ color: "action.active", mr: 1, my: 0.5 }}
             />
-            <Button onClick={() => setDate(dayjs(Date.now()).add(-1, "day"))}>
-              Вчера
-            </Button>
+            <TextField
+              label="Введите трек номер"
+              variant="standard"
+              name="trackNumber"
+              value={formAddPost.values.trackNumber}
+              onChange={formAddPost.handleChange}
+              fullWidth
+              required
+              error={Boolean(formAddPost.errors.trackNumber)}
+              helperText={formAddPost.errors.trackNumber}
+            />
           </Box>
-        </LocalizationProvider>
-        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-          <ShareLocationIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-          <TextField
-            label="Введите трек номер"
-            variant="standard"
-            fullWidth
-            error={formAddPost.errors.trackNumber !== undefined}
-            helperText={formAddPost.errors.trackNumber}
-          />
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-          <Person2Icon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-          <TextField label="Получатель" variant="standard" fullWidth />
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-          <BusinessIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-          <TextField label="Адрес получателя" variant="standard" fullWidth />
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-          <TransferWithinAStationIcon
-            sx={{ color: "action.active", mr: 1, my: 0.5 }}
-          />
-          <TextField label="Отправитель" variant="standard" fullWidth />
-        </Box>
-        <Button type="submit" variant="outlined" color="success" >
-          Добавить
-        </Button>
-      </Paper>
+          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+            <Person2Icon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+            <TextField
+              label="Получатель"
+              variant="standard"
+              fullWidth
+              required
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+            <BusinessIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+            <TextField
+              label="Адрес получателя"
+              variant="standard"
+              fullWidth
+              required
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+            <TransferWithinAStationIcon
+              sx={{ color: "action.active", mr: 1, my: 0.5 }}
+            />
+            <TextField
+              label="Отправитель"
+              variant="standard"
+              fullWidth
+              required
+            />
+          </Box>
+          <Button type="submit" variant="outlined" color="success">
+            Добавить
+          </Button>
+        </Paper>
+      </Box>
     </Box>
   );
 };
