@@ -6,9 +6,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Form, useFormik, yupToFormErrors } from "formik";
+import { useFormik } from "formik";
 import style from "./AddLetter.module.scss";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import React from "react";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
@@ -18,46 +17,22 @@ import BusinessIcon from "@mui/icons-material/Business";
 import Person2Icon from "@mui/icons-material/Person2";
 import ShareLocationIcon from "@mui/icons-material/ShareLocation";
 import "dayjs/locale/ru";
-import * as Yup from "yup";
-
-import { string } from "prop-types";
+import { INIT_ADD_LETTER } from "./initValue";
+import { validateYup } from "./validateForm";
 
 const AddLetter = () => {
-  const validateYup = Yup.object({
-    trackNumber: Yup.string()
-      .min(6, "Должно быть длиннее 6 символов")
-      .required("Обязательное поле"),
-    receiver: Yup.string()
-      .min(6, "Должно быть длиннее 6 символов")
-      .required("Обязательное поле"),
-    address: Yup.string()
-      .min(6, "Должно быть длиннее 6 символов")
-      .required("Обязательное поле"),
-    sender: Yup.string()
-      .min(6, "Должно быть длиннее 6 символов")
-      .required("Обязательное поле"),
-  });
+  const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
 
   const formAddPost = useFormik({
-    initialValues: {
-      date: Date.now(),
-      trackNumber: "",
-      receiver: "",
-      address: "",
-      sender: "",
-    },
+    initialValues: INIT_ADD_LETTER,
     validationSchema: validateYup,
     onSubmit: (values) => {
       console.log(values);
     },
-    // onReset: (value) => {
-    //   value.date = Date.now();
-    // },
   });
 
-  const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
-
-  const handleChange = (newValue: Dayjs | null) => {
+  const changeDate = (newValue: Dayjs | null) => {
+    formAddPost.setFieldValue("date", dayjs(Date.now()).add(-1, "day"), false);
     setDate(newValue);
   };
 
@@ -65,34 +40,37 @@ const AddLetter = () => {
     <Box>
       <Typography variant="h5"> Добавление нового отправления</Typography>
       <Divider sx={{ mt: 2 }} />
-      <Box component={"form"}>
+      <Box
+        component={"form"}
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log(formAddPost.isValid);
+          console.log("Form Submit", formAddPost.values);
+        }}
+      >
         <Paper elevation={2} className={style.form}>
           <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"ru"}>
             <Box className={style.datePickerGroup}>
               <DesktopDatePicker
                 label="Дата отправки"
+                value={date}
+                onChange={changeDate}
                 inputFormat="DD.MM.YYYY"
-                value={formAddPost.values.date}
-                onChange={formAddPost.handleChange}
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     sx={{ width: 250 }}
+                    name="date"
                     helperText={formAddPost.errors.date}
                     error={
-                      formAddPost.touched && Boolean(formAddPost.errors.date)
+                      formAddPost.touched.date &&
+                      Boolean(formAddPost.errors.date)
                     }
                   />
                 )}
               />
               <Button
-                onClick={() =>
-                  formAddPost.setFieldValue(
-                    "date",
-                    dayjs(Date.now()).add(-1, "day"),
-                    false
-                  )
-                }
+                onClick={() => changeDate(dayjs(Date.now()).add(-1, "day"))}
               >
                 Вчера
               </Button>
@@ -109,8 +87,10 @@ const AddLetter = () => {
               value={formAddPost.values.trackNumber}
               onChange={formAddPost.handleChange}
               fullWidth
-              required
-              error={Boolean(formAddPost.errors.trackNumber)}
+              error={
+                formAddPost.touched.trackNumber &&
+                Boolean(formAddPost.errors.trackNumber)
+              }
               helperText={formAddPost.errors.trackNumber}
             />
           </Box>
@@ -118,18 +98,32 @@ const AddLetter = () => {
             <Person2Icon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
             <TextField
               label="Получатель"
+              name="receiver"
               variant="standard"
               fullWidth
-              required
+              value={formAddPost.values.receiver}
+              onChange={formAddPost.handleChange}
+              error={
+                formAddPost.touched.receiver &&
+                Boolean(formAddPost.errors.receiver)
+              }
+              helperText={formAddPost.errors.receiver}
             />
           </Box>
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <BusinessIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
             <TextField
               label="Адрес получателя"
+              name="address"
               variant="standard"
               fullWidth
-              required
+              value={formAddPost.values.address}
+              onChange={formAddPost.handleChange}
+              error={
+                formAddPost.touched.address &&
+                Boolean(formAddPost.errors.address)
+              }
+              helperText={formAddPost.errors.address}
             />
           </Box>
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
@@ -139,11 +133,22 @@ const AddLetter = () => {
             <TextField
               label="Отправитель"
               variant="standard"
+              name="sender"
               fullWidth
-              required
+              value={formAddPost.values.sender}
+              onChange={formAddPost.handleChange}
+              error={
+                formAddPost.touched.sender && Boolean(formAddPost.errors.sender)
+              }
+              helperText={formAddPost.errors.sender}
             />
           </Box>
-          <Button type="submit" variant="outlined" color="success">
+          <Button
+            type="submit"
+            variant="outlined"
+            color="success"
+            disabled={!formAddPost.isValid}
+          >
             Добавить
           </Button>
         </Paper>
