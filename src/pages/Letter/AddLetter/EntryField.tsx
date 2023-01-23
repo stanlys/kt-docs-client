@@ -1,5 +1,6 @@
 import SvgIcon from "@mui/material/SvgIcon/SvgIcon";
-import { Box, TextField } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import React from "react";
 
 interface EntryField {
@@ -7,9 +8,11 @@ interface EntryField {
   label: string;
   name: string;
   isError: boolean;
-  error: string;
+  error: string | undefined;
   value: string;
-  onChange: () => void;
+  required?: boolean;
+  finder?: boolean;
+  onChange: (e: React.ChangeEvent) => void;
 }
 
 const EntryField: React.FC<EntryField> = ({
@@ -19,6 +22,8 @@ const EntryField: React.FC<EntryField> = ({
   name,
   isError,
   error,
+  required,
+  finder,
   onChange,
 }) => {
   return (
@@ -37,7 +42,13 @@ const EntryField: React.FC<EntryField> = ({
         onChange={onChange}
         error={isError}
         helperText={error}
+        required={required}
       />
+      {finder && (
+        <IconButton color="primary">
+          <SearchIcon />
+        </IconButton>
+      )}
     </Box>
   );
 };
