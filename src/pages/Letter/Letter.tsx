@@ -12,7 +12,9 @@ const Letter = () => {
   return (
     <Stack>
       <Box>
-        <Link to="../addletter"> Добавить отправление </Link>
+        <Link to="../addletter" color="primary">
+          <Button variant="outlined">Добавить отправление</Button>
+        </Link>
       </Box>
       <LettersList
         columns={columns}

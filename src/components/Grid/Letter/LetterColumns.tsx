@@ -17,6 +17,11 @@ export const columns: TypeColumn[] = [
     style: { color: "primary", fontWeight: "bold" },
   },
   {
+    name: "postman",
+    header: "Отправлено",
+    defaultFlex: 1,
+  },
+  {
     name: "date",
     header: "Дата отправки",
     dateFormat: "YYYY-MM-DD",

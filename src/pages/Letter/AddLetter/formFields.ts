@@ -2,7 +2,7 @@ import ShareLocationIcon from "@mui/icons-material/ShareLocation";
 import BusinessIcon from "@mui/icons-material/Business";
 import Person2Icon from "@mui/icons-material/Person2";
 import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
-import { boolean } from "yup";
+import SignpostIcon from "@mui/icons-material/Signpost";
 
 export const formFields = {
   trackNumber: {
@@ -10,6 +10,12 @@ export const formFields = {
     required: true,
     label: "Введите трек номер",
     icon: ShareLocationIcon,
+  },
+  postman: {
+    name: "postman",
+    required: false,
+    label: "Курьер",
+    icon: SignpostIcon,
   },
   receiver: {
     name: "receiver",

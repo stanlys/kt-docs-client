@@ -7,6 +7,9 @@ export const validateYup = Yup.object({
   receiver: Yup.string()
     .min(6, "Должно быть длиннее 6 символов")
     .required("Обязательное поле"),
+  postman: Yup.string()
+    .required("Обязательное поле")
+    .min(7, "Должно быть длинне 7 символов"),
   address: Yup.string()
     .min(6, "Должно быть длиннее 6 символов")
     .required("Обязательное поле"),

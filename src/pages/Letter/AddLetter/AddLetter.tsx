@@ -55,6 +55,13 @@ const AddLetter = () => {
             {...formFields.trackNumber}
           />
           <EntryField
+            error={errors.postman}
+            isError={Boolean(touched.postman) && Boolean(errors.postman)}
+            value={values.postman}
+            onChange={handleChange}
+            {...formFields.postman}
+          />
+          <EntryField
             error={errors.receiver}
             isError={Boolean(touched.receiver) && Boolean(errors.receiver)}
             value={values.receiver}

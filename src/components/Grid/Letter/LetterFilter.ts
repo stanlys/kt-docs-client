@@ -8,6 +8,12 @@ export const filterLetters: TypeFilterValue = [
     type: "date",
     value: "",
   },
+  {
+    name: "postman",
+    operator: "contains",
+    type: "string",
+    value: "",
+  },
   { name: "letterType", operator: "contains", type: "string", value: "" },
   { name: "receiver", operator: "contains", type: "string", value: "" },
   { name: "address", operator: "contains", type: "string", value: "" },
