@@ -19,20 +19,23 @@ import ShareLocationIcon from "@mui/icons-material/ShareLocation";
 import "dayjs/locale/ru";
 import { INIT_ADD_LETTER } from "./initValue";
 import { validateYup } from "./validateForm";
+import DateSelect from "./DateSelect";
+import EntryField from "./EntryField";
 
 const AddLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
 
-  const formAddPost = useFormik({
-    initialValues: INIT_ADD_LETTER,
-    validationSchema: validateYup,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+  const { values, errors, isValid, setFieldValue, touched, handleChange } =
+    useFormik({
+      initialValues: INIT_ADD_LETTER,
+      validationSchema: validateYup,
+      onSubmit: (values) => {
+        console.log(values);
+      },
+    });
 
   const changeDate = (newValue: Dayjs | null) => {
-    formAddPost.setFieldValue("date", dayjs(Date.now()).add(-1, "day"), false);
+    setFieldValue("date", dayjs(Date.now()).add(-1, "day"), false);
     setDate(newValue);
   };
 
@@ -44,38 +47,24 @@ const AddLetter = () => {
         component={"form"}
         onSubmit={(e) => {
           e.preventDefault();
-          console.log(formAddPost.isValid);
-          console.log("Form Submit", formAddPost.values);
+          console.log(isValid);
+          console.log("Form Submit", values);
         }}
       >
         <Paper elevation={2} className={style.form}>
-          <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"ru"}>
-            <Box className={style.datePickerGroup}>
-              <DesktopDatePicker
-                label="Дата отправки"
-                value={date}
-                onChange={changeDate}
-                inputFormat="DD.MM.YYYY"
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    sx={{ width: 250 }}
-                    name="date"
-                    helperText={formAddPost.errors.date}
-                    error={
-                      formAddPost.touched.date &&
-                      Boolean(formAddPost.errors.date)
-                    }
-                  />
-                )}
-              />
-              <Button
-                onClick={() => changeDate(dayjs(Date.now()).add(-1, "day"))}
-              >
-                Вчера
-              </Button>
-            </Box>
-          </LocalizationProvider>
+          <DateSelect
+            changeDate={changeDate}
+            value={date}
+            error={errors.date as string}
+            isError={Boolean(touched.date) && Boolean(errors.date)}
+          />
+          <EntryField
+            error=""
+            isError={false}
+            label={"222"}
+            
+            icon={ShareLocationIcon}
+          />
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <ShareLocationIcon
               sx={{ color: "action.active", mr: 1, my: 0.5 }}
@@ -84,14 +73,12 @@ const AddLetter = () => {
               label="Введите трек номер"
               variant="standard"
               name="trackNumber"
-              value={formAddPost.values.trackNumber}
-              onChange={formAddPost.handleChange}
+              value={values.trackNumber}
+              onChange={handleChange}
               fullWidth
-              error={
-                formAddPost.touched.trackNumber &&
-                Boolean(formAddPost.errors.trackNumber)
-              }
-              helperText={formAddPost.errors.trackNumber}
+              required
+              error={touched.trackNumber && Boolean(errors.trackNumber)}
+              helperText={errors.trackNumber}
             />
           </Box>
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
@@ -101,13 +88,10 @@ const AddLetter = () => {
               name="receiver"
               variant="standard"
               fullWidth
-              value={formAddPost.values.receiver}
-              onChange={formAddPost.handleChange}
-              error={
-                formAddPost.touched.receiver &&
-                Boolean(formAddPost.errors.receiver)
-              }
-              helperText={formAddPost.errors.receiver}
+              value={values.receiver}
+              onChange={handleChange}
+              error={touched.receiver && Boolean(errors.receiver)}
+              helperText={errors.receiver}
             />
           </Box>
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
@@ -117,13 +101,10 @@ const AddLetter = () => {
               name="address"
               variant="standard"
               fullWidth
-              value={formAddPost.values.address}
-              onChange={formAddPost.handleChange}
-              error={
-                formAddPost.touched.address &&
-                Boolean(formAddPost.errors.address)
-              }
-              helperText={formAddPost.errors.address}
+              value={values.address}
+              onChange={handleChange}
+              error={touched.address && Boolean(errors.address)}
+              helperText={errors.address}
             />
           </Box>
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
@@ -135,19 +116,17 @@ const AddLetter = () => {
               variant="standard"
               name="sender"
               fullWidth
-              value={formAddPost.values.sender}
-              onChange={formAddPost.handleChange}
-              error={
-                formAddPost.touched.sender && Boolean(formAddPost.errors.sender)
-              }
-              helperText={formAddPost.errors.sender}
+              value={values.sender}
+              onChange={handleChange}
+              error={touched.sender && Boolean(errors.sender)}
+              helperText={errors.sender}
             />
           </Box>
           <Button
             type="submit"
             variant="outlined"
             color="success"
-            disabled={!formAddPost.isValid}
+            disabled={!isValid}
           >
             Добавить
           </Button>

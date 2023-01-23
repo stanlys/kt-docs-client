@@ -5,3 +5,11 @@ export const INIT_ADD_LETTER = {
   address: "",
   sender: "",
 };
+
+export interface AddLetter {
+  date: Date;
+  trackNumber: string;
+  receiver: string;
+  address: string;
+  sender: string;
+};
