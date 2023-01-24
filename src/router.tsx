@@ -26,6 +26,11 @@ export const router = createBrowserRouter([
       {
         path: "setting",
         element: <Settings />,
+        children: [
+          { path: "address", element: <div>Добавление адреса</div> },
+          { path: "currier", element: <div>Добавление доставщиков</div> },
+          { path: "additional", element: <div>Дополнительные настройки</div> },
+        ],
       },
     ],
   },
