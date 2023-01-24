@@ -1,6 +1,8 @@
-export const dataSource = [
+import { ILetter } from "../interfaces/letter";
+
+export const dataSource: Array<ILetter> = [
   {
-    id: 1,
+    id: "1",
     date: Date.now(),
     outNumber: "125/23",
     inNumber: "",
@@ -12,7 +14,7 @@ export const dataSource = [
     letterTitle: "Направление акта выполненных работ",
   },
   {
-    id: 2,
+    id: "2",
     date: Date.now(),
     outNumber: "126/23",
     inNumber: "",
@@ -24,7 +26,7 @@ export const dataSource = [
     letterTitle: "Направление акта выполненных работ",
   },
   {
-    id: 3,
+    id: "3",
     date: Date.now(),
     outNumber: "126/23",
     inNumber: "",
