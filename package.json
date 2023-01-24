@@ -20,6 +20,7 @@
     "@mui/styled-engine-sc": "^5.11.0",
     "@mui/x-data-grid": "^5.17.19",
     "@mui/x-date-pickers": "^5.0.15",
+    "axios": "^1.2.4",
     "dayjs": "^1.11.7",
     "formik": "^2.2.9",
     "formik-mui": "^5.0.0-alpha.0",
