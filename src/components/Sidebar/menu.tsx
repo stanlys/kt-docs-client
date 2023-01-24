@@ -24,3 +24,9 @@ export const ADDITIONAL_MENU: MenuProps[] = [
   { caption: "Курьеры", link: "/currier", icon: <SignpostIcon /> },
   { caption: "Настройка", link: "/setting", icon: <SettingsIcon /> },
 ];
+
+export const SETTING_MENU: MenuProps[] = [
+  { caption: "Адреса", link: "address", icon: <PlaceIcon /> },
+  { caption: "Курьеры", link: "currier", icon: <SignpostIcon /> },
+  { caption: "Дополнительно", link: "setting", icon: <SettingsIcon /> },
+];

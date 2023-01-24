@@ -5,6 +5,7 @@ import Incoming from "./pages/Incoming/Incoming";
 import AddLetter from "./pages/Letter/AddLetter/AddLetter";
 import Letter from "./pages/Letter/Letter";
 import OutputLetter from "./pages/Output/Output";
+import Settings from "./pages/Settings/Settings";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "addletter",
         element: <AddLetter />,
+      },
+      {
+        path: "setting",
+        element: <Settings />,
       },
     ],
   },

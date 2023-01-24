@@ -9,7 +9,6 @@ import { ActionEditPreview } from "../ActionEdit";
 import { ActionDelete } from "../ActionDelete";
 
 export const columns: TypeColumn[] = [
-  ...ActionEditPreview,
   {
     name: "outNumber",
     header: "Трек номер",

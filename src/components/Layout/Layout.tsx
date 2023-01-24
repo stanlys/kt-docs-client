@@ -11,6 +11,7 @@ import Link from "@mui/material/Link";
 import StickyFooter from "../Footer/Footer";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
+import { mainListItems, secondaryListItems } from "../Sidebar/MenuItems";
 
 function Copyright(props: any) {
   return (
@@ -46,7 +47,7 @@ const DashboardContent = () => {
               : theme.palette.grey[900],
         }}
       >
-        <Sidebar />
+        <Sidebar mainMenu={mainListItems} subMenu={secondaryListItems} />
         <Box
           component="main"
           sx={{
