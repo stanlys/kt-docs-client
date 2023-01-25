@@ -10,7 +10,7 @@ import { ActionDelete } from "../ActionDelete";
 
 export const columns: TypeColumn[] = [
   {
-    name: "outNumber",
+    name: "trackNumber",
     header: "Трек номер",
     defaultFlex: 1,
     style: { color: "primary", fontWeight: "bold" },

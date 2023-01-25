@@ -1,7 +1,7 @@
 import { TypeFilterValue } from "@inovua/reactdatagrid-community/types";
 
 export const filterLetters: TypeFilterValue = [
-  { name: "outNumber", operator: "contains", type: "string", value: "" },
+  { name: "trackNumber", operator: "contains", type: "string", value: "" },
   {
     name: "date",
     operator: "eq",
