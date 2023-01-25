@@ -1,8 +1,9 @@
 import { TypeColumn } from "@inovua/reactdatagrid-community/types";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { deletePostLetterById } from "./helpers";
 
-export const ActionDelete: TypeColumn[] = [
+export const ActionDeletePostLetter: TypeColumn[] = [
   {
     name: "delete",
     header: "Удалить",
@@ -12,7 +13,7 @@ export const ActionDelete: TypeColumn[] = [
       return (
         <IconButton
           color="error"
-          onClick={() => console.log("delete", data._id)}
+          onClick={() => deletePostLetterById(data._id)}
         >
           <DeleteIcon />
         </IconButton>

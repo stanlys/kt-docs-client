@@ -3,6 +3,7 @@ import BusinessIcon from "@mui/icons-material/Business";
 import Person2Icon from "@mui/icons-material/Person2";
 import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
 import SignpostIcon from "@mui/icons-material/Signpost";
+import DraftsIcon from "@mui/icons-material/Drafts";
 
 export const formFields = {
   trackNumber: {
@@ -16,6 +17,12 @@ export const formFields = {
     required: false,
     label: "Курьер",
     icon: SignpostIcon,
+  },
+  letterType: {
+    name: "letterType",
+    required: false,
+    label: "Тип документа",
+    icon: DraftsIcon,
   },
   receiver: {
     name: "receiver",

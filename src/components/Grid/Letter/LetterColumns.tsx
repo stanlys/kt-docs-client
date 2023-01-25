@@ -1,12 +1,7 @@
 import { TypeColumn } from "@inovua/reactdatagrid-community/types";
-import { IconButton } from "@mui/material";
-import PageviewIcon from "@mui/icons-material/Pageview";
-import DeleteIcon from "@mui/icons-material/Delete";
 import DateFilter from "@inovua/reactdatagrid-community/DateFilter";
-import EditIcon from "@mui/icons-material/Edit";
 import moment from "moment";
-import { ActionEditPreview } from "../ActionEdit";
-import { ActionDelete } from "../ActionDelete";
+import { ActionDeletePostLetter } from "./ActionDeletePostLetter";
 
 export const columns: TypeColumn[] = [
   {
@@ -45,5 +40,5 @@ export const columns: TypeColumn[] = [
   { name: "address", header: "Адрес", defaultFlex: 1 },
   { name: "sender", header: "Отправитель", defaultFlex: 1 },
 
-  ...ActionDelete,
+  ...ActionDeletePostLetter,
 ];

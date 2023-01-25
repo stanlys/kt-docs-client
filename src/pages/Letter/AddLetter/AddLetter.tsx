@@ -9,17 +9,19 @@ import { validateYup } from "./validateForm";
 import DateSelect from "./DateSelect";
 import EntryField from "./EntryField";
 import { formFields } from "./formFields";
+import { createLetter } from "../../../api/letter";
+import { useNavigate } from "react-router";
+import { stat } from "fs";
 
 const AddLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
+  const navigate = useNavigate();
 
   const { values, errors, isValid, setFieldValue, touched, handleChange } =
     useFormik({
       initialValues: INIT_ADD_LETTER,
       validationSchema: validateYup,
-      onSubmit: (values) => {
-        console.log(values);
-      },
+      onSubmit: (values) => {},
     });
 
   const changeDate = (newValue: Dayjs | null) => {
@@ -32,10 +34,11 @@ const AddLetter = () => {
       <Divider sx={{ mt: 2 }} />
       <Box
         component={"form"}
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
           console.log(isValid);
-          console.log("Form Submit", values);
+          const status = await createLetter(values);
+          console.log(status);
         }}
       >
         <Paper elevation={2} className={style.form}>
@@ -53,6 +56,13 @@ const AddLetter = () => {
             value={values.trackNumber}
             onChange={handleChange}
             {...formFields.trackNumber}
+          />
+          <EntryField
+            error={errors.letterType}
+            isError={Boolean(touched.letterType) && Boolean(errors.letterType)}
+            value={values.letterType}
+            onChange={handleChange}
+            {...formFields.letterType}
           />
           <EntryField
             error={errors.postman}

@@ -20,7 +20,7 @@ export const ActionEditPreview: TypeColumn[] = [
           </IconButton>
           <IconButton
             color="primary"
-            onClick={() => console.log("Просмотр", data.outNumber)}
+            onClick={() => console.log("Просмотр", data._id)}
           >
             <EditIcon />
           </IconButton>

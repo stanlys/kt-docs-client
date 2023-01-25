@@ -1,4 +1,5 @@
 import { Box, Button, Stack } from "@mui/material";
+import { height } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllLetters } from "../../api/letter";
@@ -11,8 +12,6 @@ import {
   INITIAL_POST_LETTER,
   IPostLetter,
 } from "../../interfaces/postLetter";
-
-import { dataLetters } from "../../MOCK/letter";
 
 const Letter = () => {
   const [letters, setLetters] = useState<ILoadPostLetter>({
@@ -43,6 +42,7 @@ const Letter = () => {
           columns={columns}
           data={letters.postLetters}
           filter={filterLetters}
+          style={{ height: "100%" }}
         />
       )}
     </Stack>
