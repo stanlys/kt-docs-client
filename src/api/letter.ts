@@ -12,14 +12,14 @@ export const getAllLetters = async (): Promise<Array<IPostLetter>> => {
     Array<IPostLetter>,
     unknown
   > = await axiosInstance.get(URL.LETTER);
-  return data.request;
+  return data.data;
 };
 
 export const getLetter = async (id: string): Promise<IPostLetter> => {
   const data: AxiosResponse<IPostLetter, unknown> = await axiosInstance.get(
     URL.LETTER + `/${id}`
   );
-  return data.request;
+  return data.data;
 };
 
 export const createLetter = async (
@@ -27,12 +27,12 @@ export const createLetter = async (
 ): Promise<string> => {
   const data: AxiosResponse<ICreatedPostLetter, unknown> =
     await axiosInstance.post(URL.LETTER, letter);
-  return data.request;
+  return data.statusText;
 };
 
 export const deleteLetter = async (id: string): Promise<IPostLetter> => {
   const data: AxiosResponse<IPostLetter, unknown> = await axiosInstance.delete(
     URL.LETTER + `/${id}`
   );
-  return data.request;
-}
+  return data.data;
+};

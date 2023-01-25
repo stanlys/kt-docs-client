@@ -1,20 +1,35 @@
 import { Box, Button, Stack } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllLetters } from "../../api/letter";
 import { filterValue } from "../../components/Grid/InComing/InFilter";
 import { columns } from "../../components/Grid/Letter/LetterColumns";
 import { filterLetters } from "../../components/Grid/Letter/LetterFilter";
 import LettersList from "../../components/Grid/LettersList";
+import {
+  ILoadPostLetter,
+  INITIAL_POST_LETTER,
+  IPostLetter,
+} from "../../interfaces/postLetter";
 
 import { dataLetters } from "../../MOCK/letter";
 
 const Letter = () => {
-  //   useEffect(() => {
-  //     const a = getAllLetters();
+  const [letters, setLetters] = useState<ILoadPostLetter>({
+    isLoading: true,
+    error: null,
+    postLetters: [],
+  });
 
-  //     console.log(a);
-  //   }, []);
+  useEffect(() => {
+    const loadData = async () => {
+      const letters = await getAllLetters();
+      console.log(letters);
+      setLetters({ postLetters: letters, isLoading: false, error: "" });
+    };
+
+    loadData();
+  }, []);
 
   return (
     <Stack>
@@ -23,11 +38,13 @@ const Letter = () => {
           <Button variant="outlined">Добавить отправление</Button>
         </Link>
       </Box>
-      <LettersList
-        columns={columns}
-        data={dataLetters}
-        filter={filterLetters}
-      />
+      {!letters.isLoading && (
+        <LettersList
+          columns={columns}
+          data={letters.postLetters}
+          filter={filterLetters}
+        />
+      )}
     </Stack>
   );
 };
