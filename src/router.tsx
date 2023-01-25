@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import NotFound from "./pages/404/404";
 import Incoming from "./pages/Incoming/Incoming";
-import AddLetter from "./pages/Letter/AddLetter/AddLetter";
-import Letter from "./pages/Letter/Letter";
+import AddLetter from "./pages/PostLetter/AddLetter/AddLetter";
+import Letter from "./pages/PostLetter/Letter";
 import OutputLetter from "./pages/Output/Output";
 import Settings from "./pages/Settings/Settings";
 
