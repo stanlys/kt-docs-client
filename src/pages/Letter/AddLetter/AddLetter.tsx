@@ -12,10 +12,12 @@ import { formFields } from "./formFields";
 import { createLetter } from "../../../api/letter";
 import { useNavigate } from "react-router";
 import { stat } from "fs";
+import { useSnackbar } from "notistack";
 
 const AddLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
   const navigate = useNavigate();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const { values, errors, isValid, setFieldValue, touched, handleChange } =
     useFormik({
@@ -37,8 +39,11 @@ const AddLetter = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           console.log(isValid);
-          const status = await createLetter(values);
-          console.log(status);
+          try {
+            const status = await createLetter(values);
+            enqueueSnackbar("письмо добавлено");
+            navigate("/letter");
+          } catch (e) {}
         }}
       >
         <Paper elevation={2} className={style.form}>
