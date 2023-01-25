@@ -1,6 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import PostLetterReducer from "./postLetter/slice";
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  postLetter: PostLetterReducer,
+});
 
 export const store = () => {
   return configureStore({

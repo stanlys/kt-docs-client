@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { ICreatedPostLetter, IPostLetter } from "../interfaces/postLetter";
 import { URL } from "./URL";
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: URL.BASE,
   timeout: 1000,
 });
