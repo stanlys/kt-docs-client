@@ -13,6 +13,7 @@ import { createLetter } from "../../../api/letter";
 import { useNavigate } from "react-router";
 import { stat } from "fs";
 import { useSnackbar } from "notistack";
+import { green } from "@mui/material/colors";
 
 const AddLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
@@ -38,12 +39,13 @@ const AddLetter = () => {
         component={"form"}
         onSubmit={async (e) => {
           e.preventDefault();
-          console.log(isValid);
           try {
             const status = await createLetter(values);
-            enqueueSnackbar("письмо добавлено");
+            enqueueSnackbar("письмо добавлено", { variant: "success" });
             navigate("/letter");
-          } catch (e) {}
+          } catch (e) {
+            enqueueSnackbar("ошибка добавления", { variant: "error" });
+          }
         }}
       >
         <Paper elevation={2} className={style.form}>
