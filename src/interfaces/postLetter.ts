@@ -9,7 +9,7 @@ export interface IPostLetter {
   sender: string;
 }
 
-export type ICreatedPostLetter = Omit<IPostLetter, "id">;
+export type ICreatedPostLetter = Omit<IPostLetter, "_id">;
 
 export const INITIAL_POST_LETTER: Array<IPostLetter> = [
   {
