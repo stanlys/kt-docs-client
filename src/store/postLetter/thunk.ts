@@ -26,11 +26,10 @@ export const addPostLetter = createAsyncThunk(
     try {
       const response: AxiosResponse<IPostLetter, unknown> =
         await axiosInstance.post(URL.LETTER, letter);
-      return response;
+      return response.data;
     } catch (error) {
       const err = error as AxiosError;
       return rejectWithValue(err.message);
     }
   }
 );
-

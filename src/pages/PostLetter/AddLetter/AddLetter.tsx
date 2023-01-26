@@ -11,25 +11,40 @@ import EntryField from "./EntryField";
 import { formFields } from "./formFields";
 import { createLetter } from "../../../api/letter";
 import { useNavigate } from "react-router";
-import { stat } from "fs";
 import { useSnackbar } from "notistack";
-import { green } from "@mui/material/colors";
+import {
+  ICreatedPostLetter,
+  IPostLetter,
+} from "../../../interfaces/postLetter";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { addPostLetter } from "../../../store/postLetter/thunk";
 
 const AddLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
   const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  const { values, errors, isValid, setFieldValue, touched, handleChange } =
-    useFormik({
-      initialValues: INIT_ADD_LETTER,
-      validationSchema: validateYup,
-      onSubmit: (values) => {},
-    });
+  const { isLoading, error } = useAppSelector((state) => state.postLetter);
+  const dispatch = useAppDispatch();
+
+  const {
+    values,
+    errors,
+    isValid,
+    setFieldValue,
+    touched,
+    handleChange,
+    handleReset,
+  } = useFormik({
+    initialValues: INIT_ADD_LETTER,
+    validationSchema: validateYup,
+    onSubmit: (values) => {},
+  });
 
   const changeDate = (newValue: Dayjs | null) => {
-    setFieldValue("date", dayjs(Date.now()).add(-1, "day"), false);
+    setFieldValue("date", newValue, false);
     setDate(newValue);
+    console.log(newValue);
   };
   return (
     <Box>
@@ -39,11 +54,21 @@ const AddLetter = () => {
         component={"form"}
         onSubmit={async (e) => {
           e.preventDefault();
-          try {
-            const status = await createLetter(values);
+          const addedPostLetter: ICreatedPostLetter = {
+            address: values.address,
+            date: values.date,
+            letterType: values.letterType,
+            postman: values.postman,
+            receiver: values.receiver,
+            sender: values.sender,
+            trackNumber: values.trackNumber,
+          };
+          dispatch(addPostLetter(addedPostLetter));
+          if (error == null) {
             enqueueSnackbar("письмо добавлено", { variant: "success" });
-            navigate("/letter");
-          } catch (e) {
+            handleReset(e);
+            changeDate(dayjs(Date.now()));
+          } else {
             enqueueSnackbar("ошибка добавления", { variant: "error" });
           }
         }}

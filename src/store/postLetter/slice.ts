@@ -33,10 +33,13 @@ export const PostLetterSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(addPostLetter.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.postLetters.push(action.payload);
-      })
+      .addCase(
+        addPostLetter.fulfilled,
+        (state, action: PayloadAction<IPostLetter>) => {
+          state.isLoading = false;
+          state.postLetters.push(action.payload);
+        }
+      )
       .addCase(addPostLetter.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
