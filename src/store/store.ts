@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import PostLetterReducer from "./postLetter/slice";
+import OutgoingReducer from "./outgoing/slice";
 
 const rootReducer = combineReducers({
   postLetter: PostLetterReducer,
+  outgoing: OutgoingReducer,
 });
 
 export const store = () => {

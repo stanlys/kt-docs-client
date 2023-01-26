@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import NotFound from "./pages/404/404";
-import Incoming from "./pages/Incoming/Incoming";
+import Outgoing from "./pages/Outgoing/Outgoing";
 import AddLetter from "./pages/PostLetter/AddLetter/AddLetter";
 import PostLetter from "./pages/PostLetter/PostLetter";
-import OutputLetter from "./pages/Output/Output";
+import Incoming from "./pages/Incoming/Incoming";
 import Settings from "./pages/Settings/Settings";
 
 export const router = createBrowserRouter([
@@ -13,10 +13,14 @@ export const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Incoming /> },
-      { path: "out", element: <OutputLetter /> },
+      { index: true, element: <Outgoing /> },
+      { path: "out", element: <Incoming /> },
       {
         path: "letter",
+        element: <PostLetter />,
+      },
+      {
+        path: "contract",
         element: <PostLetter />,
       },
       {
