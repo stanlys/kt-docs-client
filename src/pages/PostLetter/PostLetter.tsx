@@ -1,5 +1,5 @@
 import { Box, Button, Stack } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { columns } from "../../components/Grid/Letter/LetterColumns";
 import { filterLetters } from "../../components/Grid/Letter/LetterFilter";
@@ -8,10 +8,9 @@ import { getAllPostLetters } from "../../store/postLetter/thunk";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import FailedLoader from "../../components/FailedLoader/FailedLoader";
 
-const Letter = () => {
+const PostLetter = () => {
   const dispatch = useAppDispatch();
   const letters = useAppSelector((state) => state.postLetter);
-  console.log(letters);
 
   useEffect(() => {
     dispatch(getAllPostLetters());
@@ -45,4 +44,4 @@ const Letter = () => {
   );
 };
 
-export default Letter;
+export default PostLetter;

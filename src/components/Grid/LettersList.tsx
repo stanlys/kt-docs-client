@@ -34,6 +34,7 @@ const LettersList: React.FC<LettersList> = ({
         defaultFilterValue={filter}
         showEmptyRows={false}
         groupBy={["date"]}
+        pagination={"local"}
       />
     </Box>
   );

@@ -18,17 +18,17 @@ export const columns: TypeColumn[] = [
   {
     name: "date",
     header: "Дата отправки",
-    dateFormat: "YYYY-MM-DD",
+    dateFormat: "DD.MM.YYYY",
     minWidth: 10,
     defaultFlex: 1,
     filterEditor: DateFilter,
     filterEditorProps: {
-      dateFormat: "MM-DD-YYYY",
+      dateFormat: "DD.MM.YYYY",
       highlightWeekends: true,
       placeholder: "введите дату",
     },
     render: ({ value }: { value: string }) => {
-      return moment(value).format("MM-DD-YYYY");
+      return moment(value).format("DD.MM.YYYY");
     },
   },
   {
