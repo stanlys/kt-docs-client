@@ -14,6 +14,6 @@ export const getAllPostLetters = createAsyncThunk<
     return response.data;
   } catch (error) {
     const err = error as AxiosError;
-    return rejectWithValue(err as unknown as string);
+    return rejectWithValue(err.message);
   }
 });

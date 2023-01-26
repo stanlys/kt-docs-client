@@ -8,7 +8,7 @@ const initialState: ILoadPostLetter = {
   postLetters: [],
 };
 
-export const PostLetterSlice = createSlice<ILoadPostLetter>({
+export const PostLetterSlice = createSlice({
   name: "postLetter",
   initialState,
   reducers: {},
@@ -16,7 +16,7 @@ export const PostLetterSlice = createSlice<ILoadPostLetter>({
     builder
       .addCase(getAllPostLetters.pending, (state) => {
         state.isLoading = true;
-        state.error = "";
+        state.error = null;
       })
       .addCase(
         getAllPostLetters.fulfilled,
