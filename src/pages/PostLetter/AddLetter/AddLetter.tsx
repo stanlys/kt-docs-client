@@ -9,13 +9,9 @@ import { validateYup } from "./validateForm";
 import DateSelect from "./DateSelect";
 import EntryField from "./EntryField";
 import { formFields } from "./formFields";
-import { createLetter } from "../../../api/letter";
 import { useNavigate } from "react-router";
 import { useSnackbar } from "notistack";
-import {
-  ICreatedPostLetter,
-  IPostLetter,
-} from "../../../interfaces/postLetter";
+import { ICreatedPostLetter } from "../../../interfaces/postLetter";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { addPostLetter } from "../../../store/postLetter/thunk";
 
@@ -24,7 +20,7 @@ const AddLetter = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  const { isLoading, error } = useAppSelector((state) => state.postLetter);
+  const { error } = useAppSelector((state) => state.postLetter);
   const dispatch = useAppDispatch();
 
   const {
@@ -38,41 +34,40 @@ const AddLetter = () => {
   } = useFormik({
     initialValues: INIT_ADD_LETTER,
     validationSchema: validateYup,
-    onSubmit: (values) => {},
+    onSubmit: () => {},
   });
 
   const changeDate = (newValue: Dayjs | null) => {
     setFieldValue("date", newValue, false);
     setDate(newValue);
-    console.log(newValue);
   };
+
+  const submitForm = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const addedPostLetter: ICreatedPostLetter = {
+      address: values.address,
+      date: values.date,
+      letterType: values.letterType,
+      postman: values.postman,
+      receiver: values.receiver,
+      sender: values.sender,
+      trackNumber: values.trackNumber,
+    };
+    dispatch(addPostLetter(addedPostLetter));
+    if (error == null) {
+      enqueueSnackbar("письмо добавлено", { variant: "success" });
+      handleReset(e);
+      changeDate(dayjs(Date.now()));
+    } else {
+      enqueueSnackbar("ошибка добавления", { variant: "error" });
+    }
+  };
+
   return (
     <Box>
       <Typography variant="h5"> Добавление нового отправления</Typography>
       <Divider sx={{ mt: 2 }} />
-      <Box
-        component={"form"}
-        onSubmit={async (e) => {
-          e.preventDefault();
-          const addedPostLetter: ICreatedPostLetter = {
-            address: values.address,
-            date: values.date,
-            letterType: values.letterType,
-            postman: values.postman,
-            receiver: values.receiver,
-            sender: values.sender,
-            trackNumber: values.trackNumber,
-          };
-          dispatch(addPostLetter(addedPostLetter));
-          if (error == null) {
-            enqueueSnackbar("письмо добавлено", { variant: "success" });
-            handleReset(e);
-            changeDate(dayjs(Date.now()));
-          } else {
-            enqueueSnackbar("ошибка добавления", { variant: "error" });
-          }
-        }}
-      >
+      <Box component={"form"} onSubmit={submitForm}>
         <Paper elevation={2} className={style.form}>
           <DateSelect
             changeDate={changeDate}

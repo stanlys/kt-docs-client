@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ILoadPostLetter, IPostLetter } from "../../interfaces/postLetter";
-import { addPostLetter, getAllPostLetters } from "./thunk";
+import { addPostLetter, deletePostLetter, getAllPostLetters } from "./thunk";
 
 const initialState: ILoadPostLetter = {
   isLoading: false,
@@ -41,6 +41,23 @@ export const PostLetterSlice = createSlice({
         }
       )
       .addCase(addPostLetter.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(deletePostLetter.pending, (state) => {
+        state.error = null;
+        state.isLoading = true;
+      })
+      .addCase(
+        deletePostLetter.fulfilled,
+        (state, action: PayloadAction<IPostLetter>) => {
+          state.isLoading = false;
+          state.postLetters = state.postLetters.filter(
+            (letter) => letter._id !== action.payload._id
+          );
+        }
+      )
+      .addCase(deletePostLetter.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
       });

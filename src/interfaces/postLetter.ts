@@ -1,5 +1,5 @@
 export interface IPostLetter {
-  id: string;
+  _id: string;
   date: number;
   trackNumber: string;
   letterType: string;
@@ -13,7 +13,7 @@ export type ICreatedPostLetter = Omit<IPostLetter, "id">;
 
 export const INITIAL_POST_LETTER: Array<IPostLetter> = [
   {
-    id: "",
+    _id: "",
     date: 0,
     trackNumber: "",
     letterType: "",

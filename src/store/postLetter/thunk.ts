@@ -33,3 +33,19 @@ export const addPostLetter = createAsyncThunk(
     }
   }
 );
+
+export const deletePostLetter = createAsyncThunk<
+  IPostLetter,
+  string,
+  { rejectValue: string }
+>("postLetter/delete", async (id, { rejectWithValue }) => {
+  try {
+    const response: AxiosResponse<IPostLetter, unknown> =
+      await axiosInstance.delete(URL.LETTER_BY_ID(id));
+    console.log("99999", response.data);
+    return response.data;
+  } catch (error) {
+    const err = error as AxiosError;
+    return rejectWithValue(err.message);
+  }
+});
