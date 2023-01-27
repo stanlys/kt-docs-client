@@ -7,6 +7,8 @@ import { columns } from "../../components/Grid/InComing/InColumns";
 import LettersList from "../../components/Grid/LettersList";
 import style from "./Outgoing.module.scss";
 import { useAppSelector } from "../../store/hooks";
+import StandbyFormDialog from "../../components/Dialogs/DialogStandby";
+import ButtonStandby from "../../components/Buttons/ButtonStandby";
 
 const Outgoing = () => {
   const gridStyle = { minHeight: "100%", color: "#223133" };
@@ -14,14 +16,15 @@ const Outgoing = () => {
   const letters = useAppSelector((state) => state.outgoing);
 
   useEffect(() => {
-    console.log("load letters");
+    // console.log("load letters");
   }, []);
 
   return (
     <Stack>
       <Box className={style.buttonGroup}>
         <Button variant="outlined"> Создать письмо </Button>
-        <Button variant="outlined"> Резерв исходящего</Button>
+        <ButtonStandby />
+        {/* <Button variant="outlined"> Резерв исходящего</Button> */}
       </Box>
       <LettersList
         columns={columns}
