@@ -37,6 +37,7 @@ const PostLetter = () => {
             data={letters.postLetters}
             filter={filterLetters}
             style={{ height: "100%" }}
+            name="postLetter"
           />
         </>
       )}
