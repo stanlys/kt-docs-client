@@ -14,6 +14,7 @@ import { useSnackbar } from "notistack";
 import { ICreatedPostLetter } from "../../../interfaces/postLetter";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { addPostLetter } from "../../../store/postLetter/thunk";
+import { API_ENDPOINTS } from "../../../api/URL";
 
 const AddLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
@@ -126,6 +127,13 @@ const AddLetter = () => {
             disabled={!isValid}
           >
             Добавить
+          </Button>
+          <Button
+            variant="outlined"
+            color="info"
+            href={`${API_ENDPOINTS.LETTER}`}
+          >
+            Вернуться к списку
           </Button>
         </Paper>
       </Box>

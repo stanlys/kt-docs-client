@@ -3,17 +3,14 @@ import DateFilter from "@inovua/reactdatagrid-community/DateFilter";
 import moment from "moment";
 import { ActionDeletePostLetter } from "./ActionDeletePostLetter";
 
+let count = 1;
 export const columns: TypeColumn[] = [
   {
-    name: "trackNumber",
-    header: "Трек номер",
-    defaultFlex: 1,
-    style: { color: "primary", fontWeight: "bold" },
-  },
-  {
-    name: "postman",
-    header: "Отправлено",
-    defaultFlex: 1,
+    name: "Counter",
+    header: "№ п/п",
+    render: ({ rowIndex }) => {
+      return rowIndex + 1;
+    },
   },
   {
     name: "date",
@@ -31,14 +28,30 @@ export const columns: TypeColumn[] = [
       return moment(value).format("DD.MM.YYYY");
     },
   },
+  { name: "receiver", header: "Получатель", defaultFlex: 1 },
+  {
+    name: "postman",
+    header: "Отправлено",
+    defaultFlex: 1,
+  },
   {
     name: "letterType",
     header: "Тип",
     defaultFlex: 1,
   },
-  { name: "receiver", header: "Получатель", defaultFlex: 1 },
+  {
+    name: "letterDescription",
+    header: "Краткое описание вложения",
+    defaultFlex: 1,
+  },
   { name: "address", header: "Адрес", defaultFlex: 1 },
   { name: "sender", header: "Отправитель", defaultFlex: 1 },
+  {
+    name: "trackNumber",
+    header: "Трек номер",
+    defaultFlex: 1,
+    style: { color: "primary", fontWeight: "bold" },
+  },
 
   ...ActionDeletePostLetter,
 ];
