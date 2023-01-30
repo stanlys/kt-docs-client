@@ -6,22 +6,24 @@ import { filterValue } from "../../components/Grid/InComing/InFilter";
 import { columns } from "../../components/Grid/InComing/InColumns";
 import LettersList from "../../components/Grid/LettersList";
 import style from "./Outgoing.module.scss";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import ButtonStandby from "../../components/Buttons/ButtonStandby";
 
 const Outgoing = () => {
   const gridStyle = { minHeight: "100%", color: "#223133" };
 
   const letters = useAppSelector((state) => state.outgoing);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log("load letters");
+    // console.log("load letters");
   }, []);
 
   return (
     <Stack>
       <Box className={style.buttonGroup}>
         <Button variant="outlined"> Создать письмо </Button>
-        <Button variant="outlined"> Резерв исходящего</Button>
+        <ButtonStandby />
       </Box>
       <LettersList
         columns={columns}
