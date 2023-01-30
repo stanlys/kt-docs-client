@@ -6,4 +6,5 @@ export const INIT_ADD_LETTER = {
   receiver: "",
   address: "",
   sender: "",
+  letterDescription: "",
 };

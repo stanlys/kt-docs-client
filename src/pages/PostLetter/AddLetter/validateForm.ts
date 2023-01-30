@@ -16,6 +16,9 @@ export const validateYup = Yup.object({
   address: Yup.string()
     .min(6, "Должно быть длиннее 6 символов")
     .required("Обязательное поле"),
+  letterDescription: Yup.string()
+    .required("Обязательно поле")
+    .min(1, "Хотя бы один символ"),
   sender: Yup.string()
     .min(6, "Должно быть длиннее 6 символов")
     .required("Обязательное поле"),

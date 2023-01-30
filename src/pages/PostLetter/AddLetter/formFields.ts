@@ -3,6 +3,7 @@ import BusinessIcon from "@mui/icons-material/Business";
 import Person2Icon from "@mui/icons-material/Person2";
 import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
 import SignpostIcon from "@mui/icons-material/Signpost";
+import DescriptionIcon from "@mui/icons-material/Description";
 import DraftsIcon from "@mui/icons-material/Drafts";
 
 export const formFields = {
@@ -23,6 +24,12 @@ export const formFields = {
     required: false,
     label: "Тип документа",
     icon: DraftsIcon,
+  },
+  letterDescription: {
+    name: "letterDescription",
+    required: false,
+    label: "Краткое описание отправления",
+    icon: DescriptionIcon,
   },
   receiver: {
     name: "receiver",

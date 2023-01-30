@@ -49,6 +49,7 @@ const AddLetter = () => {
       address: values.address,
       date: values.date,
       letterType: values.letterType,
+      letterDescription: values.letterDescription,
       postman: values.postman,
       receiver: values.receiver,
       sender: values.sender,
@@ -119,6 +120,16 @@ const AddLetter = () => {
             value={values.sender}
             onChange={handleChange}
             {...formFields.sender}
+          />
+          <EntryField
+            error={errors.letterDescription}
+            isError={
+              Boolean(touched.letterDescription) &&
+              Boolean(errors.letterDescription)
+            }
+            value={values.letterDescription}
+            onChange={handleChange}
+            {...formFields.letterDescription}
           />
           <Button
             type="submit"

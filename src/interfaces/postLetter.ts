@@ -3,6 +3,7 @@ export interface IPostLetter {
   date: number;
   trackNumber: string;
   letterType: string;
+  letterDescription: string;
   postman: string;
   receiver: string;
   address: string;
@@ -17,6 +18,7 @@ export const INITIAL_POST_LETTER: Array<IPostLetter> = [
     date: 0,
     trackNumber: "",
     letterType: "",
+    letterDescription: "",
     postman: "",
     receiver: "",
     address: "",
