@@ -20,8 +20,6 @@ export const MAIN_MENU: MenuProps[] = [
 ];
 
 export const ADDITIONAL_MENU: MenuProps[] = [
-  { caption: "Адреса", link: "/address", icon: <PlaceIcon /> },
-  { caption: "Курьеры", link: "/currier", icon: <SignpostIcon /> },
   { caption: "Настройка", link: "/setting", icon: <SettingsIcon /> },
 ];
 
