@@ -2,11 +2,11 @@ import { Box, Button, Stack } from "@mui/material";
 import React, { useEffect } from "react";
 import "@inovua/reactdatagrid-community/index.css";
 import { dataSource } from "../../MOCK/data";
-import { filterValue } from "../../components/Grid/OutLetter/InFilter";
+import { filterValue } from "../../components/Grid/OutLetter/OutFilter";
 import {
-  columns,
+  OUT_LETTER_COLUMNS,
   OUTGOING_COLUMNS_ORDER,
-} from "../../components/Grid/OutLetter/InColumns";
+} from "../../components/Grid/OutLetter/OutColumns";
 import LettersList from "../../components/Grid/LettersList";
 import style from "./Outgoing.module.scss";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -29,7 +29,7 @@ const Outgoing = () => {
         <ButtonStandby />
       </Box>
       <LettersList
-        columns={columns}
+        columns={OUT_LETTER_COLUMNS}
         style={gridStyle}
         data={dataSource}
         filter={filterValue}

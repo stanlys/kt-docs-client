@@ -4,7 +4,7 @@ import moment from "moment";
 import { ActionEditPreview } from "../ActionEdit";
 import { ActionDelete } from "../ActionDelete";
 
-export const columns: TypeColumn[] = [
+export const OUT_LETTER_COLUMNS: TypeColumn[] = [
   ...ActionEditPreview,
   {
     name: "outNumber",
