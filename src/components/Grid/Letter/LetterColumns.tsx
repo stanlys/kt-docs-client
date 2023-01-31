@@ -3,11 +3,11 @@ import DateFilter from "@inovua/reactdatagrid-community/DateFilter";
 import moment from "moment";
 import { ActionDeletePostLetter } from "./ActionDeletePostLetter";
 
-export const columns: TypeColumn[] = [
+export const POSTLETTER_COLUMNS: TypeColumn[] = [
   {
     name: "Counter",
     header: "№ п/п",
-    defaultFlex: 1,
+    defaultFlex: 0.35,
     render: ({ rowIndex }) => {
       return rowIndex + 1;
     },
@@ -56,7 +56,7 @@ export const columns: TypeColumn[] = [
   ...ActionDeletePostLetter,
 ];
 
-export const COLUMN_ORDER = [
+export const POSTLETTER_COLUMN_ORDER = [
   "Counter",
   "receiver",
   "date",

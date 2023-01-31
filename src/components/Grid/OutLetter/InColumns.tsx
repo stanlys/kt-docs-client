@@ -1,9 +1,5 @@
 import { TypeColumn } from "@inovua/reactdatagrid-community/types";
-import { IconButton } from "@mui/material";
-import PageviewIcon from "@mui/icons-material/Pageview";
-import DeleteIcon from "@mui/icons-material/Delete";
 import DateFilter from "@inovua/reactdatagrid-community/DateFilter";
-import EditIcon from "@mui/icons-material/Edit";
 import moment from "moment";
 import { ActionEditPreview } from "../ActionEdit";
 import { ActionDelete } from "../ActionDelete";
@@ -21,17 +17,17 @@ export const columns: TypeColumn[] = [
   {
     name: "date",
     header: "Дата",
-    dateFormat: "YYYY-MM-DD",
+    dateFormat: "DD.MM.YYYY",
     minWidth: 10,
     defaultFlex: 1,
     filterEditor: DateFilter,
     filterEditorProps: {
-      dateFormat: "MM-DD-YYYY",
+      dateFormat: "DD.MM.YYYY",
       highlightWeekends: true,
       placeholder: "введите дату",
     },
     render: ({ value }: { value: string }) => {
-      return moment(value).format("MM-DD-YYYY");
+      return moment(value).format("DD.MM.YYYY");
     },
   },
   { name: "inNumber", header: "№ Вх.", defaultFlex: 1 },
@@ -39,15 +35,15 @@ export const columns: TypeColumn[] = [
     name: "dateOrder",
     header: "Дата получения",
     defaultFlex: 1,
-    dateFormat: "YYYY-MM-DD",
+    dateFormat: "DD.MM.YYYY",
     filterEditor: DateFilter,
     filterEditorProps: {
-      dateFormat: "MM-DD-YYYY",
+      dateFormat: "DD.MM.YYYY",
       highlightWeekends: true,
       placeholder: "введите дату",
     },
     render: ({ value }: { value: string }) => {
-      return value === "" ? "" : moment(value).format("MM-DD-YYYY");
+      return value === "" ? "" : moment(value).format("DD.MM.YYYY");
     },
   },
   {
@@ -59,5 +55,18 @@ export const columns: TypeColumn[] = [
   { name: "sender", header: "Отправитель", defaultFlex: 1 },
   { name: "executor", header: "Исполнитель", defaultFlex: 1 },
   { name: "letterTitle", header: "Содержание", defaultFlex: 1 },
+  { name: "ResponseToIncoming", header: "Ответ на входящий", defaultFlex: 1 },
   ...ActionDelete,
+];
+
+export const OUTGOING_COLUMNS_ORDER: Array<string> = [
+  "date",
+  "outNumber",
+  "receiver",
+  "letterTitle",
+  "sender",
+  "executor",
+  "inNumber",
+  "dateOrder",
+  "ResponseToIncoming",
 ];

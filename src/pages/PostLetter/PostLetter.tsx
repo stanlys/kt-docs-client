@@ -1,7 +1,10 @@
 import { Box, Button, Stack } from "@mui/material";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { columns } from "../../components/Grid/Letter/LetterColumns";
+import {
+  POSTLETTER_COLUMNS,
+  POSTLETTER_COLUMN_ORDER,
+} from "../../components/Grid/Letter/LetterColumns";
 import { filterLetters } from "../../components/Grid/Letter/LetterFilter";
 import LettersList from "../../components/Grid/LettersList";
 import { getAllPostLetters } from "../../store/postLetter/thunk";
@@ -33,11 +36,12 @@ const PostLetter = () => {
             </Link>
           </Box>
           <LettersList
-            columns={columns}
+            columns={POSTLETTER_COLUMNS}
             data={letters.postLetters}
             filter={filterLetters}
             style={{ height: "100%" }}
-            name="postLetter"
+            LocalStorageKey="postLetter"
+            columnOrderDefault={POSTLETTER_COLUMN_ORDER}
           />
         </>
       )}

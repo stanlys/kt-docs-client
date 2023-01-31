@@ -6,7 +6,7 @@ import {
 } from "@inovua/reactdatagrid-community/types";
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { COLUMN_ORDER } from "./Letter/LetterColumns";
+import { POSTLETTER_COLUMN_ORDER } from "./Letter/LetterColumns";
 
 interface LettersList {
   columns: TypeColumn[];
@@ -15,7 +15,8 @@ interface LettersList {
   style?: {
     [key: string]: string | number;
   };
-  name: string;
+  columnOrderDefault: Array<string>;
+  LocalStorageKey: string;
 }
 
 const LettersList: React.FC<LettersList> = ({
@@ -23,20 +24,21 @@ const LettersList: React.FC<LettersList> = ({
   data,
   filter,
   style,
-  name,
+  columnOrderDefault,
+  LocalStorageKey,
 }) => {
-  const [columnOrder, setColumnOrder] = useState<string[]>(COLUMN_ORDER);
+  const [columnOrder, setColumnOrder] = useState<string[]>(columnOrderDefault);
 
   const loadColumnOrder = () => {
     const columns =
-      localStorage.getItem(name) === null
-        ? COLUMN_ORDER
-        : JSON.parse(localStorage.getItem(name) as string);
+      localStorage.getItem(LocalStorageKey) === null
+        ? columnOrderDefault
+        : JSON.parse(localStorage.getItem(LocalStorageKey) as string);
     setColumnOrder(columns);
   };
 
   const saveColumnOrder = (columns: string[]) => {
-    localStorage.setItem(name, JSON.stringify(columns));
+    localStorage.setItem(LocalStorageKey, JSON.stringify(columns));
     setColumnOrder(columns);
   };
 

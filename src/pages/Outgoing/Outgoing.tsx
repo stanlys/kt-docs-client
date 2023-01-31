@@ -2,8 +2,11 @@ import { Box, Button, Stack } from "@mui/material";
 import React, { useEffect } from "react";
 import "@inovua/reactdatagrid-community/index.css";
 import { dataSource } from "../../MOCK/data";
-import { filterValue } from "../../components/Grid/InComing/InFilter";
-import { columns } from "../../components/Grid/InComing/InColumns";
+import { filterValue } from "../../components/Grid/OutLetter/InFilter";
+import {
+  columns,
+  OUTGOING_COLUMNS_ORDER,
+} from "../../components/Grid/OutLetter/InColumns";
 import LettersList from "../../components/Grid/LettersList";
 import style from "./Outgoing.module.scss";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -30,6 +33,8 @@ const Outgoing = () => {
         style={gridStyle}
         data={dataSource}
         filter={filterValue}
+        columnOrderDefault={OUTGOING_COLUMNS_ORDER}
+        LocalStorageKey="OUTGOING"
       />
     </Stack>
   );

@@ -25,4 +25,10 @@ export const filterValue: TypeFilterValue = [
   { name: "receiver", operator: "contains", type: "string", value: "" },
   { name: "letterType", operator: "contains", type: "string", value: "" },
   { name: "letterTitle", operator: "contains", type: "string", value: "" },
+  {
+    name: "ResponseToIncoming",
+    operator: "contains",
+    type: "string",
+    value: "",
+  },
 ];
