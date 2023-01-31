@@ -4,7 +4,7 @@ import moment from "moment";
 import { ActionEditPreview } from "../ActionEdit";
 import { ActionDelete } from "../ActionDelete";
 
-export const OUT_LETTER_COLUMNS: TypeColumn[] = [
+export const IN_LETTER_COLUMNS: TypeColumn[] = [
   ...ActionEditPreview,
   {
     name: "outNumber",
@@ -59,7 +59,7 @@ export const OUT_LETTER_COLUMNS: TypeColumn[] = [
   ...ActionDelete,
 ];
 
-export const OUTGOING_COLUMNS_ORDER: Array<string> = [
+export const INCOMING_COLUMNS_ORDER: Array<string> = [
   "date",
   "outNumber",
   "receiver",

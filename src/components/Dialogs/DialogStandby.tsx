@@ -36,6 +36,7 @@ const StandbyFormDialog: React.FC<StandbyFormDialogProps> = ({
       letterTitle: " ",
       letterType: "Письмо",
       receiver: " ",
+      ResponseToIncoming: " ",
     };
     enqueueSnackbar("Успешно добавлено", { variant: "success" });
     toggleOpen();

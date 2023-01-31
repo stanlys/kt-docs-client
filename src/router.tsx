@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import NotFound from "./pages/404/404";
-import Outgoing from "./pages/Outgoing/Outgoing";
+import Incoming from "./pages/Incoming/Incoming";
 import AddLetter from "./pages/PostLetter/AddLetter/AddLetter";
 import PostLetter from "./pages/PostLetter/PostLetter";
-import Incoming from "./pages/Incoming/Incoming";
 import Settings from "./pages/Settings/Settings";
+import Outgoing from "./pages/Outgoing/Outgoing";
 
 export const router = createBrowserRouter([
   {

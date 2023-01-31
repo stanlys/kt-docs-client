@@ -2,7 +2,7 @@ import { ILetter } from "../interfaces/letter";
 
 export const dataSource: Array<ILetter> = [
   {
-    id: "1",
+    _id: "1",
     date: Date.now(),
     outNumber: "125/23",
     inNumber: "",
@@ -12,9 +12,10 @@ export const dataSource: Array<ILetter> = [
     sender: "Писаренко В.Н.",
     executor: "Челнаков С.А.",
     letterTitle: "Направление акта выполненных работ",
+    ResponseToIncoming: " - ",
   },
   {
-    id: "2",
+    _id: "2",
     date: Date.now(),
     outNumber: "126/23",
     inNumber: "",
@@ -24,9 +25,10 @@ export const dataSource: Array<ILetter> = [
     sender: "Писаренко В.Н.",
     executor: "Маликов Д.А.",
     letterTitle: "Направление акта выполненных работ",
+    ResponseToIncoming: " - ",
   },
   {
-    id: "3",
+    _id: "3",
     date: Date.now(),
     outNumber: "126/23",
     inNumber: "",
@@ -36,5 +38,6 @@ export const dataSource: Array<ILetter> = [
     sender: "Писаренко В.Н.",
     executor: "Маликов Д.А.",
     letterTitle: "Направление акта выполненных работ",
+    ResponseToIncoming: " - ",
   },
 ];

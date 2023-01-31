@@ -9,6 +9,7 @@ export interface ILetter {
   sender: string;
   executor: string;
   letterTitle: string;
+  ResponseToIncoming: string;
 }
 
 export type ICreatedLetter = Omit<ILetter, "_id">;
