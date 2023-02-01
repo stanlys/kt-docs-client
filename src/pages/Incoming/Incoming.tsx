@@ -1,16 +1,16 @@
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import "@inovua/reactdatagrid-community/index.css";
-import { dataSource } from "../../MOCK/data";
 import { filterValue } from "../../components/Grid/OutLetter/OutFilter";
-import {
-  OUT_LETTER_COLUMNS,
-  OUTGOING_COLUMNS_ORDER,
-} from "../../components/Grid/OutLetter/OutColumns";
 import LettersList from "../../components/Grid/LettersList";
-import style from "./Outgoing.module.scss";
+import style from "./Incoming.module.scss";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ButtonStandby from "../../components/Buttons/ButtonStandby";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import {
+  INCOMING_COLUMNS_ORDER,
+  IN_LETTER_COLUMNS,
+} from "../../components/Grid/InLetter/InColumns";
 
 const Incoming = () => {
   const gridStyle = { minHeight: "100%", color: "#223133" };
@@ -25,15 +25,19 @@ const Incoming = () => {
   return (
     <Stack>
       <Box className={style.buttonGroup}>
+        <Typography variant="h6">
+          <KeyboardDoubleArrowRightIcon />
+          Входящие
+        </Typography>
         <Button variant="outlined"> Создать письмо </Button>
         <ButtonStandby />
       </Box>
       <LettersList
-        columns={OUT_LETTER_COLUMNS}
+        columns={IN_LETTER_COLUMNS}
         style={gridStyle}
-        data={dataSource}
+        data={[]}
         filter={filterValue}
-        columnOrderDefault={OUTGOING_COLUMNS_ORDER}
+        columnOrderDefault={INCOMING_COLUMNS_ORDER}
         LocalStorageKey="OUTGOING"
       />
     </Stack>

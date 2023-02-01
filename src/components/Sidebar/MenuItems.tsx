@@ -1,12 +1,11 @@
 import ListSubheader from "@mui/material/ListSubheader";
 import MenuButton from "./MenuButton";
 import { ADDITIONAL_MENU, MAIN_MENU, SETTING_MENU } from "./menu";
+import MenuCaption from "./MenuCaption";
 
 export const mainListItems = (
   <>
-    <ListSubheader component="div" inset>
-      Реестры
-    </ListSubheader>
+    <MenuCaption caption="Реестры" />
     {MAIN_MENU.map(({ caption, icon, link }) => (
       <MenuButton caption={caption} link={link} icon={icon} key={caption} />
     ))}
@@ -15,9 +14,7 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <>
-    <ListSubheader component="div" inset>
-      Дополнения
-    </ListSubheader>
+    <MenuCaption caption="Дополнения" />
     {ADDITIONAL_MENU.map(({ caption, link, icon }) => (
       <MenuButton caption={caption} link={link} icon={icon} key={caption} />
     ))}
@@ -26,9 +23,7 @@ export const secondaryListItems = (
 
 export const settingList = (
   <>
-    <ListSubheader component="div" inset>
-      Настройки
-    </ListSubheader>
+    <MenuCaption caption="Настройки" />
     {SETTING_MENU.map(({ caption, link, icon }) => (
       <MenuButton caption={caption} link={link} icon={icon} key={caption} />
     ))}

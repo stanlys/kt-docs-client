@@ -1,10 +1,25 @@
 // @mui
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { styled } from "@mui/material/styles";
 
-// ----------------------------------------------------------------------
+export const SideBarHidden = styled("div")(({ theme }) => ({
+  margin: theme.spacing(2),
+  [theme.breakpoints.down("md")]: {
+    width: "3rem",
+  },
+  [theme.breakpoints.up("md")]: {
+    width: "17rem",
+  },
+}));
 
-export default function useResponsive(query: any, start: any, end?: any) {
+export const useMinWidth = (pixels: string): boolean => {
+  return useMediaQuery(`(min-width:${pixels}px)`);
+};
+
+export // ----------------------------------------------------------------------
+
+function useResponsive(query: any, start: any, end?: any) {
   const theme = useTheme();
 
   const mediaUp = useMediaQuery(theme.breakpoints.up(start));

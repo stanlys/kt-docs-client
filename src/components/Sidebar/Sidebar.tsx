@@ -1,16 +1,17 @@
 import React from "react";
 import { Box, Divider, List } from "@mui/material";
 import Paper from "@mui/material/Paper";
-import { mainListItems, secondaryListItems } from "./MenuItems";
+import { makeStyles } from "@mui/material/styles";
+import { SideBarHidden, useMinWidth } from "../../hooks/useResponsive";
 
 interface SidebarProps {
   mainMenu?: JSX.Element;
   subMenu?: JSX.Element;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({mainMenu, subMenu}) => {
+const Sidebar: React.FC<SidebarProps> = ({ mainMenu, subMenu }) => {
   return (
-    <Box sx={{ width: "20rem", m: 2 }}>
+    <SideBarHidden>
       <Paper elevation={2}>
         <List component="nav">
           {mainMenu}
@@ -18,7 +19,7 @@ const Sidebar: React.FC<SidebarProps> = ({mainMenu, subMenu}) => {
           {subMenu}
         </List>
       </Paper>
-    </Box>
+    </SideBarHidden>
   );
 };
 

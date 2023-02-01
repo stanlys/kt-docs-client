@@ -7,8 +7,8 @@ import { ActionDelete } from "../ActionDelete";
 export const IN_LETTER_COLUMNS: TypeColumn[] = [
   ...ActionEditPreview,
   {
-    name: "outNumber",
-    header: "Исходящий номер",
+    name: "inNumber",
+    header: "Входящий номер",
     maxWidth: 150,
     defaultFlex: 1.3,
 
@@ -30,7 +30,7 @@ export const IN_LETTER_COLUMNS: TypeColumn[] = [
       return moment(value).format("DD.MM.YYYY");
     },
   },
-  { name: "inNumber", header: "Входящий номер", defaultFlex: 1 },
+  { name: "outNumber", header: "Исходящий номер", defaultFlex: 1 },
   {
     name: "dateOrder",
     header: "Дата получения",
@@ -61,12 +61,12 @@ export const IN_LETTER_COLUMNS: TypeColumn[] = [
 
 export const INCOMING_COLUMNS_ORDER: Array<string> = [
   "date",
-  "outNumber",
+  "inNumber",
   "receiver",
   "letterTitle",
   "sender",
   "executor",
-  "inNumber",
+  "outNumber",
   "dateOrder",
   "ResponseToIncoming",
 ];
