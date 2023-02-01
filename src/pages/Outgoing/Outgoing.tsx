@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ButtonStandby from "../../components/Buttons/ButtonStandby";
 
 const Outgoing = () => {
-  const gridStyle = { height: "85vh", color: "#223133" };
+  const gridStyle = { height: "82vh", color: "#223133" };
 
   const letters = useAppSelector((state) => state.outgoing);
   const dispatch = useAppDispatch();

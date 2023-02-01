@@ -4,14 +4,14 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 
 import StickyFooter from "../Footer/Footer";
-import { Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import { mainListItems, secondaryListItems } from "../Sidebar/MenuItems";
+import KTHeader from "../KTHeader/KTHeader";
 
 function Copyright(props: any) {
   return (
@@ -37,7 +37,7 @@ const DashboardContent = () => {
   return (
     <ThemeProvider theme={mdTheme}>
       <CssBaseline />
-
+      <KTHeader />
       <Box
         sx={{
           display: "flex",
@@ -58,7 +58,7 @@ const DashboardContent = () => {
                 : theme.palette.grey[900],
             flexGrow: 1,
             overflow: "none",
-            height: "93vh",
+            height: "89vh",
           }}
         >
           <Box sx={{ m: 2, width: "98%", minHeight: "90%" }}>
