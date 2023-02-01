@@ -47,14 +47,14 @@ const LettersList: React.FC<LettersList> = ({
   }, []);
 
   return (
-    <Box height={"85vh"} sx={{ mt: 2 }}>
+    <Box sx={{ mt: 2 }}>
       <ReactDataGrid
         idProperty="id"
         columns={columns}
         columnOrder={columnOrder}
         dataSource={data}
-        style={style}
         sortable={true}
+        style={style}
         filterable={true}
         defaultFilterValue={filter}
         showEmptyRows={false}

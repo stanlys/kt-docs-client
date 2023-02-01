@@ -58,7 +58,7 @@ const DashboardContent = () => {
                 : theme.palette.grey[900],
             flexGrow: 1,
             overflow: "none",
-            height: "93.5vh",
+            height: "93vh",
           }}
         >
           <Box sx={{ m: 2, width: "98%", minHeight: "90%" }}>

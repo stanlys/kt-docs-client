@@ -13,7 +13,7 @@ export const SideBarHidden = styled("div")(({ theme }) => ({
   },
 }));
 
-export const useMinWidth = (pixels: string): boolean => {
+export const useMinWidth = (pixels: number): boolean => {
   return useMediaQuery(`(min-width:${pixels}px)`);
 };
 

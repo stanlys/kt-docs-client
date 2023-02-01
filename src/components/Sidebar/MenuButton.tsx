@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useMinWidth } from "../../hooks/useResponsive";
+import { MEDIA } from "../../hooks/constants";
 
 interface MenuButtonProps {
   link: string;
@@ -11,7 +12,7 @@ interface MenuButtonProps {
 }
 
 const MenuButton: React.FC<MenuButtonProps> = ({ caption, icon, link }) => {
-  const matches = useMinWidth("900");
+  const matches = useMinWidth(MEDIA.md);
 
   return (
     <Link to={link}>
