@@ -29,16 +29,17 @@ const StandbyFormDialog: React.FC<StandbyFormDialogProps> = ({
     const letter: ICreatedLetter = {
       date: Date.now(),
       sender: FIO,
-      outNumber: " ",
-      dateOrder: " ",
-      executor: " ",
-      inNumber: " ",
-      letterTitle: " ",
+      outNumber: "-",
+      dateOrder: "-",
+      executor: "-",
+      inNumber: "-",
+      letterTitle: "-",
       letterType: "Письмо",
-      receiver: " ",
-      ResponseToIncoming: " ",
+      receiver: "-",
+      ResponseToIncoming: "-",
     };
     enqueueSnackbar("Успешно добавлено", { variant: "success" });
+    dispatch
     toggleOpen();
   };
 
