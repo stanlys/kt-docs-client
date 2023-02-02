@@ -60,6 +60,7 @@ export const OUT_LETTER_COLUMNS: TypeColumn[] = [
 ];
 
 export const OUTGOING_COLUMNS_ORDER: Array<string> = [
+  "preview",
   "date",
   "outNumber",
   "receiver",
@@ -69,4 +70,5 @@ export const OUTGOING_COLUMNS_ORDER: Array<string> = [
   "inNumber",
   "dateOrder",
   "ResponseToIncoming",
+  "delete",
 ];
