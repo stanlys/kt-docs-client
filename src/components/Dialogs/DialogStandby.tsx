@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useAppDispatch } from "../../store/hooks";
 import { useSnackbar } from "notistack";
 import { ICreatedLetter } from "../../interfaces/letter";
+import { createOutgoingLetter } from "../../store/outgoing/thunks";
 
 interface StandbyFormDialogProps {
   isOpen: boolean;
@@ -30,7 +31,7 @@ const StandbyFormDialog: React.FC<StandbyFormDialogProps> = ({
       date: Date.now(),
       sender: FIO,
       outNumber: "-",
-      dateOrder: "-",
+      dateOrder: " ",
       executor: "-",
       inNumber: "-",
       letterTitle: "-",
@@ -39,7 +40,7 @@ const StandbyFormDialog: React.FC<StandbyFormDialogProps> = ({
       ResponseToIncoming: "-",
     };
     enqueueSnackbar("Успешно добавлено", { variant: "success" });
-    dispatch
+    dispatch(createOutgoingLetter(letter));
     toggleOpen();
   };
 

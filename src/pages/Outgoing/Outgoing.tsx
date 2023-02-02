@@ -1,4 +1,9 @@
-import { Box, Button, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  getOutlinedInputUtilityClass,
+  Stack,
+} from "@mui/material";
 import React, { useEffect } from "react";
 import "@inovua/reactdatagrid-community/index.css";
 import { dataSource } from "../../MOCK/data";
@@ -11,6 +16,7 @@ import LettersList from "../../components/Grid/LettersList";
 import style from "./Outgoing.module.scss";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ButtonStandby from "../../components/Buttons/ButtonStandby";
+import { getAllOutgoingLetter } from "../../store/outgoing/thunks";
 
 const Outgoing = () => {
   const gridStyle = { height: "82vh", color: "#223133" };
@@ -19,7 +25,7 @@ const Outgoing = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // console.log("load letters");
+    dispatch(getAllOutgoingLetter());
   }, []);
 
   return (
@@ -31,7 +37,7 @@ const Outgoing = () => {
       <LettersList
         columns={OUT_LETTER_COLUMNS}
         style={gridStyle}
-        data={dataSource}
+        data={letters.letters}
         filter={filterValue}
         columnOrderDefault={OUTGOING_COLUMNS_ORDER}
         LocalStorageKey="OUTGOING"

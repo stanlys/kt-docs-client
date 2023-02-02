@@ -21,8 +21,8 @@ export const getAllOutgoingLetter = createAsyncThunk<
 });
 
 export const createOutgoingLetter = createAsyncThunk<
-  ICreatedLetter,
   ILetter,
+  ICreatedLetter,
   { rejectValue: string }
 >("outgoing/create", async (createdLetter, { rejectWithValue }) => {
   try {

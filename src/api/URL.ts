@@ -7,5 +7,5 @@ export const API_ENDPOINTS = {
     return this.LETTER + `/${id}`;
   },
   INCOMING: "incoming",
-  OUTGOING: "outgoing",
+  OUTGOING: "outletter",
 };
