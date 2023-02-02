@@ -8,4 +8,7 @@ export const API_ENDPOINTS = {
   },
   INCOMING: "incoming",
   OUTGOING: "outletter",
+  OUTGIONG_BY_ID(id: string): string {
+    return this.OUTGOING + `/${id}`;
+  },
 };

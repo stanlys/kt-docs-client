@@ -2,7 +2,7 @@ import { TypeColumn } from "@inovua/reactdatagrid-community/types";
 import DateFilter from "@inovua/reactdatagrid-community/DateFilter";
 import moment from "moment";
 import { ActionEditPreview } from "../ActionEdit";
-import { ActionDelete } from "../ActionDelete";
+import { ActionDelete } from "./ActionDeleteOutLetter";
 
 export const OUT_LETTER_COLUMNS: TypeColumn[] = [
   ...ActionEditPreview,

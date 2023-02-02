@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ILoadLetter } from "../../interfaces/letter";
-import { createOutgoingLetter, getAllOutgoingLetter } from "./thunks";
+import { ILetter, ILoadLetter } from "../../interfaces/letter";
+import {
+  createOutgoingLetter,
+  deleteOutgoingLetterById,
+  getAllOutgoingLetter,
+} from "./thunks";
 
 const initialState: ILoadLetter = {
   error: null,
@@ -38,6 +42,23 @@ export const OutgoingSlice = createSlice({
         }
       )
       .addCase(createOutgoingLetter.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(deleteOutgoingLetterById.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(
+        deleteOutgoingLetterById.fulfilled,
+        (state, action: PayloadAction<ILetter>) => {
+          state.isLoading = false;
+          state.letters = state.letters.filter(
+            (letter) => letter._id != action.payload._id
+          );
+        }
+      )
+      .addCase(deleteOutgoingLetterById.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
       });

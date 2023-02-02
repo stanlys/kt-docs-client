@@ -36,3 +36,19 @@ export const createOutgoingLetter = createAsyncThunk<
     return rejectWithValue(error.message);
   }
 });
+
+export const deleteOutgoingLetterById = createAsyncThunk<
+  ILetter,
+  string,
+  { rejectValue: string }
+>("outgoing/delete", async (id, { rejectWithValue }) => {
+  try {
+    const letter: AxiosResponse<ILetter> = await axiosInstance.delete(
+      API_ENDPOINTS.OUTGIONG_BY_ID(id)
+    );
+    return letter.data;
+  } catch (err) {
+    const error = err as AxiosError;
+    return rejectWithValue(error.message);
+  }
+});
