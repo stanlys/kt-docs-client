@@ -7,64 +7,50 @@ import { useNavigate } from "react-router";
 import { useSnackbar } from "notistack";
 import EntryField from "../../../../components/EntryField/EntryField";
 import { formFieldsDelivery } from "./formFields";
-import { API_ENDPOINTS } from "../../../../api/URL";
 import { INIT_DELIVERY } from "./initValue";
 import { validateYupDelivery } from "./validateForm";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { ICreatedDelivery, IDelivery } from "../../../../interfaces/delivery";
+import { addDeliveryOrganization } from "../../../../store/Delivery/thunk";
 
 const AddDelivery = () => {
-  const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  // const { error } = useAppSelector((state) => state.postLetter);
-  // const dispatch = useAppDispatch();
+  const { error } = useAppSelector((state) => state.deliveryOrganization);
+  const dispatch = useAppDispatch();
 
-  const {
-    values,
-    errors,
-    isValid,
-    setFieldValue,
-    touched,
-    handleChange,
-    handleReset,
-  } = useFormik({
-    initialValues: INIT_DELIVERY,
-    validationSchema: validateYupDelivery,
-    onSubmit: () => {},
-  });
+  const { values, errors, isValid, touched, handleChange, handleReset } =
+    useFormik({
+      initialValues: INIT_DELIVERY,
+      validationSchema: validateYupDelivery,
+      onSubmit: () => {},
+    });
 
-  // const submitForm = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   const addedPostLetter: ICreatedPostLetter = {
-  //     address: values.address,
-  //     date: values.date,
-  //     letterType: values.letterType,
-  //     letterDescription: values.letterDescription,
-  //     postman: values.postman,
-  //     receiver: values.receiver,
-  //     sender: values.sender,
-  //     trackNumber: values.trackNumber,
-  //   };
-  //   dispatch(addPostLetter(addedPostLetter));
-  //   if (error == null) {
-  //     enqueueSnackbar("письмо добавлено", { variant: "success" });
-  //     handleReset(e);
-  //     changeDate(dayjs(Date.now()));
-  //   } else {
-  //     enqueueSnackbar("ошибка добавления", { variant: "error" });
-  //   }
-  // };
+  const submitForm = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const addedPostman: ICreatedDelivery = {
+      orgname: values.orgname,
+      website: values.website,
+      phone: values.phone,
+    };
+    dispatch(addDeliveryOrganization(addedPostman));
+    if (error == null) {
+      enqueueSnackbar("Организация добавлена", { variant: "success" });
+      handleReset(e);
+    } else {
+      enqueueSnackbar("Ошибка добавления", { variant: "error" });
+    }
+  };
 
   return (
     <Box>
       <Typography variant="h5"> Добавление новой организации</Typography>
 
-      <Box component={"form"}>
+      <Box component={"form"} onSubmit={submitForm}>
         <Paper elevation={0} className={style.form}>
           <EntryField
             error={errors.orgname}
-            isError={
-              Boolean(touched.orgname) && Boolean(errors.orgname)
-            }
+            isError={Boolean(touched.orgname) && Boolean(errors.orgname)}
             value={values.orgname}
             onChange={handleChange}
             {...formFieldsDelivery.orgname}

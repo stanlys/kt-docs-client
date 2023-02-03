@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IDelivery, ILoadingDelivery } from "../../interfaces/delivery";
-import { getAllDeliveryOrganization } from "./thunk";
-
-
+import {
+  addDeliveryOrganization,
+  deleteDeliveryOrganization,
+  getAllDeliveryOrganization,
+} from "./thunk";
 
 const initialState: ILoadingDelivery = {
   isLoading: false,
@@ -31,6 +33,38 @@ export const PostLetterSlice = createSlice({
         state.isLoading = false;
         state.error = action.error as string;
       })
+      .addCase(addDeliveryOrganization.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(
+        addDeliveryOrganization.fulfilled,
+        (state, action: PayloadAction<IDelivery>) => {
+          state.isLoading = false;
+          state.organization.push(action.payload);
+        }
+      )
+      .addCase(addDeliveryOrganization.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(deleteDeliveryOrganization.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(
+        deleteDeliveryOrganization.fulfilled,
+        (state, action: PayloadAction<IDelivery>) => {
+          state.isLoading = false;
+          state.organization = state.organization.filter(
+            (postman) => postman._id != action.payload._id
+          );
+        }
+      )
+      .addCase(deleteDeliveryOrganization.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      });
   },
 });
 

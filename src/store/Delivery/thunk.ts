@@ -2,8 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError, AxiosResponse } from "axios";
 import { axiosInstance } from "../../api/letter";
 import { API_ENDPOINTS } from "../../api/URL";
-import { IDelivery } from "../../interfaces/delivery";
-
+import { ICreatedDelivery, IDelivery } from "../../interfaces/delivery";
 
 export const getAllDeliveryOrganization = createAsyncThunk<
   Array<IDelivery>,
@@ -12,7 +11,7 @@ export const getAllDeliveryOrganization = createAsyncThunk<
 >("delivery/all", async (_, { rejectWithValue }) => {
   try {
     const response: AxiosResponse = await axiosInstance.get(
-      API_ENDPOINTS.LETTER
+      API_ENDPOINTS.DELIVERY
     );
     return response.data;
   } catch (error) {
@@ -23,10 +22,10 @@ export const getAllDeliveryOrganization = createAsyncThunk<
 
 export const addDeliveryOrganization = createAsyncThunk(
   "delivery/add",
-  async (letter: IDelivery, { rejectWithValue }) => {
+  async (postman: ICreatedDelivery, { rejectWithValue }) => {
     try {
       const response: AxiosResponse<IDelivery, unknown> =
-        await axiosInstance.post(API_ENDPOINTS.LETTER, letter);
+        await axiosInstance.post(API_ENDPOINTS.DELIVERY, postman);
       return response.data;
     } catch (error) {
       const err = error as AxiosError;
@@ -35,14 +34,14 @@ export const addDeliveryOrganization = createAsyncThunk(
   }
 );
 
-export const deletePostLetter = createAsyncThunk<
+export const deleteDeliveryOrganization = createAsyncThunk<
   IDelivery,
   string,
   { rejectValue: string }
 >("delivery/delete", async (id, { rejectWithValue }) => {
   try {
     const response: AxiosResponse<IDelivery, unknown> =
-      await axiosInstance.delete(API_ENDPOINTS.LETTER_BY_ID(id));
+      await axiosInstance.delete(API_ENDPOINTS.DELIVERY_BY_ID(id));
     return response.data;
   } catch (error) {
     const err = error as AxiosError;

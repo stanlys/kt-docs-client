@@ -11,4 +11,8 @@ export const API_ENDPOINTS = {
   OUTGIONG_BY_ID(id: string): string {
     return this.OUTGOING + `/${id}`;
   },
+  DELIVERY: "delivery",
+  DELIVERY_BY_ID(id: string): string {
+    return this.DELIVERY + `/${id}`;
+  },
 };
