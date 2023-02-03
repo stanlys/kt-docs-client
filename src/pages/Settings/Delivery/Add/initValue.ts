@@ -1,6 +1,6 @@
-import { Delivery } from "../../../../interfaces/delivery";
+import { IDelivery } from "../../../../interfaces/delivery";
 
-export const INIT_DELIVERY: Delivery = {
+export const INIT_DELIVERY: IDelivery = {
   orgname: "",
   phone: "",
   website: "",

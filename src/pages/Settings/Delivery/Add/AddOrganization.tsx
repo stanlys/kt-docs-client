@@ -2,11 +2,9 @@ import { Box, Button, Divider, Paper, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import style from "./AddOrganization.module.scss";
 import React from "react";
-import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/ru";
 import { useNavigate } from "react-router";
 import { useSnackbar } from "notistack";
-import DateSelect from "../../../PostLetter/AddLetter/DateSelect";
 import EntryField from "../../../../components/EntryField/EntryField";
 import { formFieldsDelivery } from "./formFields";
 import { API_ENDPOINTS } from "../../../../api/URL";
@@ -58,7 +56,7 @@ const AddDelivery = () => {
 
   return (
     <Box>
-      <Typography variant="h5"> Добавление нового отправления</Typography>
+      <Typography variant="h5"> Добавление новой организации</Typography>
 
       <Box component={"form"}>
         <Paper elevation={0} className={style.form}>

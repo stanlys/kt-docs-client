@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import PostLetterReducer from "./postLetter/slice";
 import OutgoingReducer from "./outgoing/slice";
+import DeliveryOrganization from "./Delivery/slice";
 
 const rootReducer = combineReducers({
   postLetter: PostLetterReducer,
   outgoing: OutgoingReducer,
+  deliveryOrganization: DeliveryOrganization,
 });
 
 export const store = () => {
