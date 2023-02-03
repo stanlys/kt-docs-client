@@ -6,6 +6,7 @@ import AddLetter from "./pages/PostLetter/AddLetter/AddLetter";
 import PostLetter from "./pages/PostLetter/PostLetter";
 import Settings from "./pages/Settings/Settings";
 import Outgoing from "./pages/Outgoing/Outgoing";
+import AddDelivery from "./pages/Settings/Delivery/Add/AddOrganization";
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
         element: <Settings />,
         children: [
           { path: "address", element: <div>Добавление адреса</div> },
-          { path: "currier", element: <div>Добавление доставщиков</div> },
+          { path: "delivery", element: <AddDelivery /> },
           { path: "additional", element: <div>Дополнительные настройки</div> },
         ],
       },

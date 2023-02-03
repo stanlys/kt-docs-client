@@ -7,7 +7,7 @@ import "dayjs/locale/ru";
 import { INIT_ADD_LETTER } from "./initValue";
 import { validateYup } from "./validateForm";
 import DateSelect from "./DateSelect";
-import EntryField from "./EntryField";
+import EntryField from "../../../components/EntryField/EntryField";
 import { formFields } from "./formFields";
 import { useNavigate } from "react-router";
 import { useSnackbar } from "notistack";

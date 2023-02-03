@@ -17,7 +17,7 @@ const PostLetter = () => {
 
   useEffect(() => {
     dispatch(getAllPostLetters());
-  }, [letters]);
+  }, []);
 
   return (
     <Stack>

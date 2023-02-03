@@ -25,6 +25,6 @@ export const ADDITIONAL_MENU: MenuProps[] = [
 
 export const SETTING_MENU: MenuProps[] = [
   { caption: "Адреса", link: "address", icon: <PlaceIcon /> },
-  { caption: "Курьеры", link: "currier", icon: <SignpostIcon /> },
+  { caption: "Курьеры", link: "delivery", icon: <SignpostIcon /> },
   { caption: "Дополнительно", link: "additional", icon: <SettingsIcon /> },
 ];

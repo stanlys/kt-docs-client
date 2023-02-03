@@ -23,7 +23,6 @@ export const secondaryListItems = (
 
 export const settingList = (
   <>
-    <MenuCaption caption="Настройки" />
     {SETTING_MENU.map(({ caption, link, icon }) => (
       <MenuButton caption={caption} link={link} icon={icon} key={caption} />
     ))}
