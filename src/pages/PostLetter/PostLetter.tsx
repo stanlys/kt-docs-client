@@ -39,7 +39,7 @@ const PostLetter = () => {
             columns={POSTLETTER_COLUMNS}
             data={letters.postLetters}
             filter={filterLetters}
-            style={{ height: "100%" }}
+            style={{ height: "75vh" }}
             LocalStorageKey="postLetter"
             columnOrderDefault={POSTLETTER_COLUMN_ORDER}
           />

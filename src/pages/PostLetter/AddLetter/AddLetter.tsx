@@ -15,6 +15,7 @@ import { ICreatedPostLetter } from "../../../interfaces/postLetter";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { addPostLetter } from "../../../store/postLetter/thunk";
 import { API_ENDPOINTS } from "../../../api/URL";
+import SelectFromList from "./SelectFromList";
 
 const AddLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
@@ -93,13 +94,21 @@ const AddLetter = () => {
             onChange={handleChange}
             {...formFields.letterType}
           />
-          <EntryField
+          <SelectFromList
+            onChange={setFieldValue}
+            value={values.postman}
+            {...formFields.postman}
+            name={""}
+            isError={false}
+            error={undefined}
+          />
+          {/* <EntryField
             error={errors.postman}
             isError={Boolean(touched.postman) && Boolean(errors.postman)}
             value={values.postman}
             onChange={handleChange}
             {...formFields.postman}
-          />
+          /> */}
           <EntryField
             error={errors.receiver}
             isError={Boolean(touched.receiver) && Boolean(errors.receiver)}
