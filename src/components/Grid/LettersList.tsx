@@ -3,6 +3,9 @@ import {
   TypeColumn,
   TypeDataSource,
   TypeFilterValue,
+  TypeRowProps,
+  TypeDataGridProps,
+  CellProps,
 } from "@inovua/reactdatagrid-community/types";
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -61,6 +64,9 @@ const LettersList: React.FC<LettersList> = ({
         groupBy={["date"]}
         pagination={"local"}
         onColumnOrderChange={saveColumnOrder}
+        renderRowContextMenu={() => {
+          console.log("2");
+        }}
       />
     </Box>
   );

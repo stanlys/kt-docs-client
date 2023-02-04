@@ -2,8 +2,10 @@ import { TypeColumn } from "@inovua/reactdatagrid-community/types";
 import DateFilter from "@inovua/reactdatagrid-community/DateFilter";
 import moment from "moment";
 import { ActionDeletePostLetter } from "./ActionDeletePostLetter";
+import { ActionGoToWebsite } from "./ActionLinkToWebsite";
 
 export const POSTLETTER_COLUMNS: TypeColumn[] = [
+  ...ActionGoToWebsite,
   {
     name: "Counter",
     header: "№ п/п",
@@ -57,6 +59,7 @@ export const POSTLETTER_COLUMNS: TypeColumn[] = [
 ];
 
 export const POSTLETTER_COLUMN_ORDER = [
+  "preview",
   "Counter",
   "receiver",
   "date",
