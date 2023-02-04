@@ -1,6 +1,6 @@
 import ShareLocationIcon from "@mui/icons-material/ShareLocation";
-import SignpostIcon from "@mui/icons-material/Signpost";
-import DraftsIcon from "@mui/icons-material/Drafts";
+import PermPhoneMsgIcon from "@mui/icons-material/PermPhoneMsg";
+import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 
 export const formFieldsDelivery = {
   orgname: {
@@ -13,12 +13,12 @@ export const formFieldsDelivery = {
     name: "website",
     required: false,
     label: "Сайт для отслеживания",
-    icon: SignpostIcon,
+    icon: TravelExploreIcon,
   },
   phone: {
     name: "phone",
     required: false,
     label: "Номер телефона",
-    icon: DraftsIcon,
+    icon: PermPhoneMsgIcon,
   },
 };
