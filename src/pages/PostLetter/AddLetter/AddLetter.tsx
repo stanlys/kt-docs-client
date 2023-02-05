@@ -9,7 +9,6 @@ import { validateYup } from "./validateForm";
 import DateSelect from "./DateSelect";
 import EntryField from "../../../components/EntryField/EntryField";
 import { formFields } from "./formFields";
-import { useNavigate } from "react-router";
 import { useSnackbar } from "notistack";
 import { ICreatedPostLetter } from "../../../interfaces/postLetter";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
@@ -19,7 +18,6 @@ import SelectFromList from "./SelectFromList";
 
 const AddLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
-  const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const { error } = useAppSelector((state) => state.postLetter);
@@ -102,13 +100,6 @@ const AddLetter = () => {
             isError={false}
             error={undefined}
           />
-          {/* <EntryField
-            error={errors.postman}
-            isError={Boolean(touched.postman) && Boolean(errors.postman)}
-            value={values.postman}
-            onChange={handleChange}
-            {...formFields.postman}
-          /> */}
           <EntryField
             error={errors.receiver}
             isError={Boolean(touched.receiver) && Boolean(errors.receiver)}

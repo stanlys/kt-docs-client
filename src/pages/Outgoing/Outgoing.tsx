@@ -17,6 +17,7 @@ import style from "./Outgoing.module.scss";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ButtonStandby from "../../components/Buttons/ButtonStandby";
 import { getAllOutgoingLetter } from "../../store/outgoing/thunks";
+import { Link } from "react-router-dom";
 
 const Outgoing = () => {
   const gridStyle = { height: "82vh", color: "#223133" };
@@ -31,7 +32,9 @@ const Outgoing = () => {
   return (
     <Stack>
       <Box className={style.buttonGroup}>
-        <Button variant="outlined"> Создать письмо </Button>
+        <Link to="/addin">
+          <Button variant="outlined"> Создать письмо </Button>
+        </Link>
         <ButtonStandby />
       </Box>
       <LettersList

@@ -8,6 +8,7 @@ import Settings from "./pages/Settings/Settings";
 import Outgoing from "./pages/Outgoing/Outgoing";
 import AddDelivery from "./pages/Settings/Delivery/Add/AddOrganization";
 import ListDelivery from "./pages/Settings/Delivery/List/ListDelivery";
+import AddOutLetter from "./pages/Outgoing/AddLetter/AddOutLetter";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "addletter",
         element: <AddLetter />,
+      },
+      {
+        path: "addin",
+        element: <AddOutLetter />,
       },
       {
         path: "setting",
