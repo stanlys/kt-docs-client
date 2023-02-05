@@ -7,13 +7,13 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
   deleteDeliveryOrganization,
   getAllDeliveryOrganization,
 } from "../../../../store/Delivery/thunk";
 import ClearIcon from "@mui/icons-material/Clear";
+import style from "./ListDelivery.module.scss";
 
 const ListDelivery = () => {
   const dispatch = useAppDispatch();
@@ -24,10 +24,12 @@ const ListDelivery = () => {
   }, []);
 
   return (
-    <Box display={"flex"} flexDirection={"row"} gap={1}>
+    <Box className={style.wrapper}>
+      <AddDelivery />
+      <Divider />
       <TableContainer component={Box}>
         <Table sx={{ minWidth: 650 }}>
-          <TableHead>
+          <TableHead className={style.tableCaption}>
             <TableRow>
               <TableCell align="center"></TableCell>
               <TableCell align="center">Наименование</TableCell>
@@ -56,8 +58,6 @@ const ListDelivery = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Divider orientation="vertical" />
-      <AddDelivery />
     </Box>
   );
 };

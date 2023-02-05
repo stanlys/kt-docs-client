@@ -35,6 +35,9 @@ export const POSTLETTER_COLUMNS: TypeColumn[] = [
     name: "postman",
     header: "Отправлено",
     defaultFlex: 1,
+    render: ({ data }) => {
+      return data.postman.orgname;
+    },
   },
   {
     name: "letterType",

@@ -44,7 +44,7 @@ const AddDelivery = () => {
 
   return (
     <Box>
-      <Typography variant="h5"> Добавление новой организации</Typography>
+      <Typography variant="h6"> Добавление новой организации</Typography>
 
       <Box component={"form"} onSubmit={submitForm}>
         <Paper elevation={0} className={style.form}>

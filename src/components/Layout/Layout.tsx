@@ -8,7 +8,7 @@ import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 
 import StickyFooter from "../Footer/Footer";
-import {  Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import { mainListItems, secondaryListItems } from "../Sidebar/MenuItems";
 import KTHeader from "../KTHeader/KTHeader";
@@ -47,7 +47,11 @@ const DashboardContent = () => {
               : theme.palette.grey[900],
         }}
       >
-        <Sidebar mainMenu={mainListItems} subMenu={secondaryListItems} />
+        <Sidebar
+          mainMenu={mainListItems}
+          subMenu={secondaryListItems}
+          elevation={1}
+        />
         <Box
           component="main"
           sx={{
