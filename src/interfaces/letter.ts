@@ -13,6 +13,7 @@ export interface ILetter {
   letterTitle: string;
   ResponseToIncoming: string;
   appendFile?: string;
+  file: Blob;
 }
 
 export type ICreatedLetter = Omit<ILetter, "_id">;

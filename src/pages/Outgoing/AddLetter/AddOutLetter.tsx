@@ -9,14 +9,14 @@ import { validateYup } from "./validateForm";
 import EntryField from "../../../components/EntryField/EntryField";
 import { formFields } from "./formFields";
 import { useSnackbar } from "notistack";
-import { ICreatedPostLetter } from "../../../interfaces/postLetter";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { addPostLetter } from "../../../store/postLetter/thunk";
 import { API_ENDPOINTS } from "../../../api/URL";
 import { ICreatedLetter } from "../../../interfaces/letter";
+import { createOutgoingLetter } from "../../../store/outgoing/thunks";
 
 const AddOutLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
+  const [file, setFile] = React.useState<any>("");
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const { error } = useAppSelector((state) => state.postLetter);
@@ -41,12 +41,24 @@ const AddOutLetter = () => {
     setDate(newValue);
   };
 
+  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const files = (e.target as HTMLInputElement).files;
+    if (files) {
+      setFile(files[0]);
+    }
+  };
+
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = FormData;
+    const formData = new FormData();
     const addedLetter: ICreatedLetter = values;
-    //dispatch(add(addedPostLetter));
-    console.log(addedLetter);
+    formData.append("file", values.file);
+    formData.append("sender", values.sender);
+    formData.append("date", values.date.toString());
+    formData.append("receiver", values.receiver);
+    console.log(formData);
+    dispatch(createOutgoingLetter(formData));
+    //console.log(addedLetter);
     if (error == null) {
       enqueueSnackbar("письмо добавлено", { variant: "success" });
       handleReset(e);
@@ -108,7 +120,14 @@ const AddOutLetter = () => {
           />
           <Button variant="contained" component="label">
             Загрузить
-            <input hidden accept="image/*" multiple type="file" />
+            <input
+              hidden
+              accept="image/*"
+              name={"file"}
+              type="file"
+              required
+              onChange={handleChange}
+            />
           </Button>
           <Button
             type="submit"

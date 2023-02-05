@@ -22,10 +22,11 @@ export const getAllOutgoingLetter = createAsyncThunk<
 
 export const createOutgoingLetter = createAsyncThunk<
   ILetter,
-  ICreatedLetter,
+  FormData,
   { rejectValue: string }
 >("outgoing/create", async (createdLetter, { rejectWithValue }) => {
   try {
+    console.log("send", createdLetter);
     const letter: AxiosResponse<ILetter> = await axiosInstance.post(
       API_ENDPOINTS.OUTGOING,
       createdLetter
