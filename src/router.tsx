@@ -6,7 +6,6 @@ import AddLetter from "./pages/PostLetter/AddLetter/AddLetter";
 import PostLetter from "./pages/PostLetter/PostLetter";
 import Settings from "./pages/Settings/Settings";
 import Outgoing from "./pages/Outgoing/Outgoing";
-import AddDelivery from "./pages/Settings/Delivery/Add/AddOrganization";
 import ListDelivery from "./pages/Settings/Delivery/List/ListDelivery";
 import AddOutLetter from "./pages/Outgoing/AddLetter/AddOutLetter";
 

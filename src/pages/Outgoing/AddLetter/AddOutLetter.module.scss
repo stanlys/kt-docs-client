@@ -1,10 +1,8 @@
-
+@import "./../../../style/index.scss";
 
 .form {
-  margin: 1rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  margin: $form-margin-top auto;
+  @include flex-column;
   padding: 2rem;
   width: 30rem;
 }

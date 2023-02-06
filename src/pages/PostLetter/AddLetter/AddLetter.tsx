@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { addPostLetter } from "../../../store/postLetter/thunk";
 import { API_ENDPOINTS } from "../../../api/URL";
 import SelectFromList from "./SelectFromList";
+import FormTitle from "../../../components/FormTitle/FormTitle";
 
 const AddLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
@@ -66,8 +67,7 @@ const AddLetter = () => {
 
   return (
     <Box>
-      <Typography variant="h5"> Добавление нового отправления</Typography>
-      <Divider sx={{ mt: 2 }} />
+      <FormTitle caption="Добавление почтового отправления"></FormTitle>
       <Box component={"form"} onSubmit={submitForm}>
         <Paper elevation={2} className={style.form}>
           <DateSelect

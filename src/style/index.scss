@@ -1,6 +1,6 @@
 :root {
   font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   font-weight: 400;
 
@@ -13,6 +13,20 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+$form-margin-top: 1rem;
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 @media (prefers-color-scheme: light) {

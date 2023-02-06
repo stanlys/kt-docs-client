@@ -80,9 +80,7 @@ const AddOutLetter = () => {
 
   return (
     <Box>
-      <FormTitle caption="Добавление исходящего письма">
-        <Button>r</Button>
-      </FormTitle>
+      <FormTitle caption="Добавление исходящего письма"></FormTitle>
       <Box component={"form"} onSubmit={submitForm}>
         <Paper elevation={2} className={style.form}>
           <EntryField
