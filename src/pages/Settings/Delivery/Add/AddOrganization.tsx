@@ -1,9 +1,7 @@
-import { Box, Button, Divider, Paper, Typography } from "@mui/material";
+import { Box, Button, Paper } from "@mui/material";
 import { useFormik } from "formik";
 import style from "./AddOrganization.module.scss";
 import React from "react";
-import "dayjs/locale/ru";
-import { useNavigate } from "react-router";
 import { useSnackbar } from "notistack";
 import EntryField from "../../../../components/EntryField/EntryField";
 import { formFieldsDelivery } from "./formFields";
@@ -12,6 +10,7 @@ import { validateYupDelivery } from "./validateForm";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { ICreatedDelivery, IDelivery } from "../../../../interfaces/delivery";
 import { addDeliveryOrganization } from "../../../../store/Delivery/thunk";
+import FormTitle from "../../../../components/FormTitle/FormTitle";
 
 const AddDelivery = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -44,8 +43,7 @@ const AddDelivery = () => {
 
   return (
     <Box>
-      <Typography variant="h6"> Добавление новой организации</Typography>
-
+      <FormTitle caption="Добавление новой организации" />
       <Box component={"form"} onSubmit={submitForm}>
         <Paper elevation={0} className={style.form}>
           <EntryField

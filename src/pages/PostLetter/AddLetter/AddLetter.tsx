@@ -139,13 +139,6 @@ const AddLetter = () => {
           >
             Добавить
           </Button>
-          <Button
-            variant="outlined"
-            color="info"
-            href={`${API_ENDPOINTS.LETTER}`}
-          >
-            Вернуться к списку
-          </Button>
         </Paper>
       </Box>
     </Box>
