@@ -21,6 +21,8 @@ import { API_ENDPOINTS } from "../../../api/URL";
 import { ICreatedLetter } from "../../../interfaces/letter";
 import { createOutgoingLetter } from "../../../store/outgoing/thunks";
 import ButtonUpload from "../../../components/Buttons/ButtonUpload";
+import ButtonBack from "../../../components/Buttons/ButtonBack";
+import FormTitle from "../../../components/FormTitle/FormTitle";
 
 const AddOutLetter = () => {
   // const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
@@ -78,10 +80,10 @@ const AddOutLetter = () => {
 
   return (
     <Box>
-      <Typography variant="h5"> Регистрация исходящего письма </Typography>
-      <Divider sx={{ mt: 2 }} />
+      <FormTitle caption="Добавление исходящего письма">
+        <Button>r</Button>
+      </FormTitle>
       <Box component={"form"} onSubmit={submitForm}>
-        
         <Paper elevation={2} className={style.form}>
           <EntryField
             error={errors.sender}
