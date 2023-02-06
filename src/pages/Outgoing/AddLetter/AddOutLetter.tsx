@@ -1,4 +1,11 @@
-import { Box, Button, Divider, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Divider,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { useFormik } from "formik";
 import style from "./AddOutLetter.module.scss";
 import React from "react";
@@ -13,10 +20,12 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { API_ENDPOINTS } from "../../../api/URL";
 import { ICreatedLetter } from "../../../interfaces/letter";
 import { createOutgoingLetter } from "../../../store/outgoing/thunks";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import CloudDoneIcon from "@mui/icons-material/CloudDone";
 
 const AddOutLetter = () => {
-  const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
-  const [file, setFile] = React.useState<any>("");
+  // const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
+  //const [file, setFile] = React.useState<any>("");
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const { error } = useAppSelector((state) => state.postLetter);
@@ -36,17 +45,17 @@ const AddOutLetter = () => {
     onSubmit: () => {},
   });
 
-  const changeDate = (newValue: Dayjs | null) => {
-    setFieldValue("date", newValue, false);
-    setDate(newValue);
-  };
+  // const changeDate = (newValue: Dayjs | null) => {
+  //   setFieldValue("date", newValue, false);
+  //   setDate(newValue);
+  // };
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const files = (e.target as HTMLInputElement).files;
-    if (files) {
-      setFile(files[0]);
-    }
-  };
+  // const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+  //   const files = (e.target as HTMLInputElement).files;
+  //   if (files) {
+  //     setFile(files[0]);
+  //   }
+  // };
 
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,7 +71,7 @@ const AddOutLetter = () => {
     if (error == null) {
       enqueueSnackbar("письмо добавлено", { variant: "success" });
       handleReset(e);
-      changeDate(dayjs(Date.now()));
+      //changeDate(dayjs(Date.now()));
     } else {
       enqueueSnackbar("ошибка добавления", { variant: "error" });
     }
@@ -118,17 +127,28 @@ const AddOutLetter = () => {
             onChange={handleChange}
             {...formFields.executor}
           />
-          <Button variant="contained" component="label">
-            Загрузить
-            <input
-              hidden
-              accept="image/*"
-              name={"file"}
-              type="file"
-              required
-              onChange={handleChange}
+          <Box>
+            <Checkbox
+              checked={values.file.size == 0 ? false : true}
+              size="medium"
+              icon={<CloudDownloadIcon />}
+              checkedIcon={<CloudDoneIcon />}
             />
-          </Button>
+            <Button
+              variant={values.file.size == 0 ? "outlined" : "contained"}
+              component="label"
+            >
+              {values.file.size == 0 ? "Загрузить" : "Загружено"}
+              <input
+                hidden
+                accept=".pdf, .doc, .docx"
+                name={"file"}
+                type="file"
+                required
+                onChange={handleChange}
+              />
+            </Button>
+          </Box>
           <Button
             type="submit"
             variant="outlined"
