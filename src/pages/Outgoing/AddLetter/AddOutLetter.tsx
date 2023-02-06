@@ -20,8 +20,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { API_ENDPOINTS } from "../../../api/URL";
 import { ICreatedLetter } from "../../../interfaces/letter";
 import { createOutgoingLetter } from "../../../store/outgoing/thunks";
-import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import CloudDoneIcon from "@mui/icons-material/CloudDone";
+import ButtonUpload from "../../../components/Buttons/ButtonUpload";
 
 const AddOutLetter = () => {
   // const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
@@ -82,6 +81,7 @@ const AddOutLetter = () => {
       <Typography variant="h5"> Регистрация исходящего письма </Typography>
       <Divider sx={{ mt: 2 }} />
       <Box component={"form"} onSubmit={submitForm}>
+        
         <Paper elevation={2} className={style.form}>
           <EntryField
             error={errors.sender}
@@ -127,43 +127,25 @@ const AddOutLetter = () => {
             onChange={handleChange}
             {...formFields.executor}
           />
-          <Box>
-            <Checkbox
-              checked={values.file.size == 0 ? false : true}
-              size="medium"
-              icon={<CloudDownloadIcon />}
-              checkedIcon={<CloudDoneIcon />}
-            />
+          <ButtonUpload
+            fileSize={values.file.size}
+            onChange={handleChange}
+            caption={"Загрузить письмо: "}
+          />
+          <Divider />
+          <Box gap={2} display="flex" justifyContent={"center"}>
             <Button
-              variant={values.file.size == 0 ? "outlined" : "contained"}
-              component="label"
+              type="submit"
+              variant="outlined"
+              color="success"
+              disabled={!isValid}
             >
-              {values.file.size == 0 ? "Загрузить" : "Загружено"}
-              <input
-                hidden
-                accept=".pdf, .doc, .docx"
-                name={"file"}
-                type="file"
-                required
-                onChange={handleChange}
-              />
+              Добавить
+            </Button>
+            <Button type="reset" variant="outlined" color="error">
+              Очистить
             </Button>
           </Box>
-          <Button
-            type="submit"
-            variant="outlined"
-            color="success"
-            disabled={!isValid}
-          >
-            Добавить
-          </Button>
-          <Button
-            variant="outlined"
-            color="info"
-            href={`${API_ENDPOINTS.LETTER}`}
-          >
-            Вернуться к списку
-          </Button>
         </Paper>
       </Box>
     </Box>
