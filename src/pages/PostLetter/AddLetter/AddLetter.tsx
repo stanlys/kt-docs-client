@@ -6,7 +6,7 @@ import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/ru";
 import { INIT_ADD_LETTER } from "./initValue";
 import { validateYup } from "./validateForm";
-import DateSelect from "./DateSelect";
+import DateSelect from "../../../components/EntryField/DateSelect";
 import EntryField from "../../../components/EntryField/EntryField";
 import { formFields } from "./formFields";
 import { useSnackbar } from "notistack";

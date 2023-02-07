@@ -2,7 +2,7 @@ import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Box, Button, TextField } from "@mui/material";
 import React from "react";
-import style from "./AddLetter.module.scss";
+import style from "./DateSelect.module.scss";
 import dayjs, { Dayjs } from "dayjs";
 
 interface DateSelectProps {

@@ -23,6 +23,7 @@ import { createOutgoingLetter } from "../../../store/outgoing/thunks";
 import ButtonUpload from "../../../components/Buttons/ButtonUpload";
 import ButtonBack from "../../../components/Buttons/ButtonBack";
 import FormTitle from "../../../components/FormTitle/FormTitle";
+import DateSelect from "../../../components/EntryField/DateSelect";
 
 const AddOutLetter = () => {
   // const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
@@ -83,68 +84,102 @@ const AddOutLetter = () => {
       <FormTitle caption="Добавление исходящего письма"></FormTitle>
       <Box component={"form"} onSubmit={submitForm}>
         <Paper elevation={2} className={style.form}>
-          <EntryField
-            error={errors.sender}
-            isError={Boolean(touched.sender) && Boolean(errors.sender)}
-            value={values.sender}
-            onChange={handleChange}
-            {...formFields.sender}
-          />
-          <EntryField
-            error={errors.letterType}
-            isError={Boolean(touched.letterType) && Boolean(errors.letterType)}
-            value={values.letterType}
-            onChange={handleChange}
-            {...formFields.letterType}
-          />
-          <EntryField
-            error={errors.letterTitle}
-            isError={
-              Boolean(touched.letterTitle) && Boolean(errors.letterTitle)
-            }
-            value={values.letterTitle}
-            onChange={handleChange}
-            {...formFields.letterTitle}
-          />
-          <EntryField
-            error={errors.receiver}
-            isError={Boolean(touched.receiver) && Boolean(errors.receiver)}
-            value={values.receiver}
-            onChange={handleChange}
-            {...formFields.receiver}
-          />
-          <EntryField
-            error={errors.inNumber}
-            isError={Boolean(touched.inNumber) && Boolean(errors.inNumber)}
-            value={values.inNumber}
-            onChange={handleChange}
-            {...formFields.inNumber}
-          />
-          <EntryField
-            error={errors.executor}
-            isError={Boolean(touched.executor) && Boolean(errors.executor)}
-            value={values.executor}
-            onChange={handleChange}
-            {...formFields.executor}
-          />
-          <ButtonUpload
-            fileSize={values.file.size}
-            onChange={handleChange}
-            caption={"Загрузить письмо: "}
-          />
-          <Divider />
-          <Box gap={2} display="flex" justifyContent={"center"}>
-            <Button
-              type="submit"
-              variant="outlined"
-              color="success"
-              disabled={!isValid}
-            >
-              Добавить
-            </Button>
-            <Button type="reset" variant="outlined" color="error">
-              Очистить
-            </Button>
+          <Box className={style.formControl}>
+            <Box className={style.formControlArea}>
+              <EntryField
+                error={errors.receiver}
+                isError={Boolean(touched.receiver) && Boolean(errors.receiver)}
+                value={values.receiver}
+                onChange={handleChange}
+                {...formFields.receiver}
+              />
+              <EntryField
+                error={errors.letterTitle}
+                isError={
+                  Boolean(touched.letterTitle) && Boolean(errors.letterTitle)
+                }
+                value={values.letterTitle}
+                onChange={handleChange}
+                {...formFields.letterTitle}
+              />
+              <EntryField
+                error={errors.sender}
+                isError={Boolean(touched.sender) && Boolean(errors.sender)}
+                value={values.sender}
+                onChange={handleChange}
+                {...formFields.sender}
+              />
+
+              <EntryField
+                error={errors.executor}
+                isError={Boolean(touched.executor) && Boolean(errors.executor)}
+                value={values.executor}
+                onChange={handleChange}
+                {...formFields.executor}
+              />
+              <ButtonUpload
+                fileSize={values.file.size}
+                onChange={handleChange}
+                caption={"Загрузить письмо: "}
+                uploadFileExt={".pdf, .doc, .docx"}
+              />
+            </Box>
+            <Box className={style.formControlArea}>
+              <DateSelect
+                value={values.dateOrder}
+                changeDate={handleChange}
+                error={errors.dateOrder as string}
+                isError={Boolean(touched.dateOrder)}
+              />
+              <EntryField
+                error={errors.letterTitle}
+                isError={
+                  Boolean(touched.letterTitle) && Boolean(errors.letterTitle)
+                }
+                value={values.letterTitle}
+                onChange={handleChange}
+                {...formFields.letterTitle}
+              />
+              <EntryField
+                error={errors.inNumber}
+                isError={Boolean(touched.inNumber) && Boolean(errors.inNumber)}
+                value={values.inNumber}
+                onChange={handleChange}
+                {...formFields.inNumber}
+              />
+              <EntryField
+                error={errors.ResponseToIncoming}
+                isError={
+                  Boolean(touched.ResponseToIncoming) &&
+                  Boolean(errors.ResponseToIncoming)
+                }
+                value={values.ResponseToIncoming}
+                onChange={handleChange}
+                {...formFields.responseToIncoming}
+              />
+              <ButtonUpload
+                fileSize={values.file.size}
+                onChange={handleChange}
+                caption={"Загрузить приложение: "}
+                uploadFileExt={".zip"}
+              />
+            </Box>
+          </Box>
+          <Box>
+            <Divider />
+            <Box gap={2} display="flex" justifyContent={"center"} mt={2}>
+              <Button
+                type="submit"
+                variant="outlined"
+                color="success"
+                disabled={!isValid}
+              >
+                Добавить
+              </Button>
+              <Button type="reset" variant="outlined" color="error">
+                Очистить
+              </Button>
+            </Box>
           </Box>
         </Paper>
       </Box>

@@ -8,12 +8,14 @@ interface ButtonUploadProps {
   fileSize: number;
   onChange: (e: React.ChangeEvent) => void;
   caption: string;
+  uploadFileExt: string;
 }
 
 const ButtonUpload: React.FC<ButtonUploadProps> = ({
   fileSize,
   caption,
   onChange,
+  uploadFileExt,
 }) => {
   return (
     <Box className={style.upload}>
@@ -31,7 +33,7 @@ const ButtonUpload: React.FC<ButtonUploadProps> = ({
         {fileSize == 0 ? "Загрузить" : "Загружено"}
         <input
           hidden
-          accept=".pdf, .doc, .docx"
+          accept={uploadFileExt}
           name={"file"}
           type="file"
           required

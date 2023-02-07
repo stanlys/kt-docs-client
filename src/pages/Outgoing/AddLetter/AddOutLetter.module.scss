@@ -4,5 +4,19 @@
   margin: $form-margin-top auto;
   @include flex-column;
   padding: 2rem;
-  width: 30rem;
+
+  width: 60rem;
+}
+
+.formControl {
+  @include flex-row;
+}
+
+.formControlArea {
+  @include flex-column;
+  width: 100%;
+}
+
+.borders {
+  border: 1px solid red;
 }

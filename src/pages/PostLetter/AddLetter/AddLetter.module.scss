@@ -6,9 +6,3 @@
   padding: $form-margin-top;
   width: 30rem;
 }
-
-.datePickerGroup {
-  @include flex-row;
-  justify-content: space-between;
-  align-items: center;
-}

@@ -1,3 +1,4 @@
+import { Dayjs } from "dayjs";
 import { string } from "prop-types";
 
 export interface ILetter {
@@ -8,7 +9,7 @@ export interface ILetter {
   receiver: string;
   letterType: string;
   inNumber: string;
-  dateOrder: string;
+  dateOrder: Dayjs;
   executor: string;
   letterTitle: string;
   ResponseToIncoming: string;
