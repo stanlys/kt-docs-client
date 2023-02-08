@@ -8,20 +8,20 @@ interface ButtonUploadProps {
   name: string;
   fileSize: number | undefined;
   onChange: (e: React.ChangeEvent) => void;
-  caption: string;
+  label: string;
   uploadFileExt: string;
 }
 
 const ButtonUpload: React.FC<ButtonUploadProps> = ({
   fileSize,
-  caption,
+  label,
   onChange,
   name,
   uploadFileExt,
 }) => {
   return (
     <Box className={style.upload}>
-      <FormLabel>{caption} </FormLabel>
+      <FormLabel>{label} </FormLabel>
       <Checkbox
         checked={fileSize == 0 ? false : true}
         size="medium"
@@ -38,7 +38,6 @@ const ButtonUpload: React.FC<ButtonUploadProps> = ({
           accept={uploadFileExt}
           name={name}
           type="file"
-          required
           onChange={onChange}
         />
       </Button>

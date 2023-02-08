@@ -62,7 +62,6 @@ const AddOutLetter = () => {
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData();
-    const addedLetter: ICreatedLetter = values;
     formData.append("file", values.file);
     formData.append("sender", values.sender);
     formData.append("date", values.date.toString());
@@ -118,11 +117,10 @@ const AddOutLetter = () => {
                 {...formFields.executor}
               />
               <ButtonUpload
-                name="file"
                 fileSize={values.file.size}
                 onChange={handleChange}
-                caption={"Загрузить письмо: "}
                 uploadFileExt={".pdf, .doc, .docx"}
+                {...formFields.file}
               />
             </Box>
             <Box className={style.formControlArea}>
@@ -141,21 +139,20 @@ const AddOutLetter = () => {
                 {...formFields.inNumber}
               />
               <EntryField
-                error={errors.ResponseToIncoming}
+                error={errors.responseToIncoming}
                 isError={
-                  Boolean(touched.ResponseToIncoming) &&
-                  Boolean(errors.ResponseToIncoming)
+                  Boolean(touched.responseToIncoming) &&
+                  Boolean(errors.responseToIncoming)
                 }
-                value={values.ResponseToIncoming}
+                value={values.responseToIncoming}
                 onChange={handleChange}
                 {...formFields.responseToIncoming}
               />
               <ButtonUpload
-                name={"fileAppendix"}
                 fileSize={values.fileAppendix.size}
                 onChange={handleChange}
-                caption={"Загрузить приложение: "}
                 uploadFileExt={".zip"}
+                {...formFields.fileAppendix}
               />
             </Box>
           </Box>

@@ -12,7 +12,7 @@ export interface ILetter {
   dateOrder: Dayjs | null;
   executor: string;
   letterTitle: string;
-  ResponseToIncoming: string;
+  responseToIncoming: string;
   appendFile?: string;
   file: Blob;
   fileAppendix: Blob;

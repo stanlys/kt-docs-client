@@ -58,4 +58,16 @@ export const formFields = {
     label: "Ответ на входящий",
     icon: MoveToInboxIcon,
   },
+  file: {
+    name: "file",
+    required: false,
+    label: "Загрузить письмо",
+    icon: MoveToInboxIcon,
+  },
+  fileAppendix: {
+    name: "fileAppendix",
+    required: false,
+    label: "Загрузить приложение",
+    icon: MoveToInboxIcon,
+  },
 };
