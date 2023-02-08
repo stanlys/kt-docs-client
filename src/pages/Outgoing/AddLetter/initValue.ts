@@ -7,10 +7,11 @@ export const INIT_ADD_LETTER: ICreatedLetter = {
   receiver: "",
   letterType: "",
   inNumber: "",
-  dateOrder: "",
+  dateOrder: null,
   executor: "",
   letterTitle: "",
   ResponseToIncoming: "",
   appendFile: "",
   file: new Blob(),
+  fileAppendix: new Blob(),
 };

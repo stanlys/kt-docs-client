@@ -6,6 +6,7 @@ import style from "./DateSelect.module.scss";
 import dayjs, { Dayjs } from "dayjs";
 
 interface DateSelectProps {
+  label: string;
   value: Dayjs | null;
   isError: boolean;
   error: string;
@@ -14,6 +15,7 @@ interface DateSelectProps {
 
 const DateSelect: React.FC<DateSelectProps> = ({
   value,
+  label,
   isError,
   error,
   changeDate,
@@ -22,7 +24,7 @@ const DateSelect: React.FC<DateSelectProps> = ({
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"ru"}>
       <Box className={style.datePickerGroup}>
         <DesktopDatePicker
-          label="Дата отправки"
+          label={label}
           value={value}
           onChange={changeDate}
           inputFormat="DD.MM.YYYY"
@@ -31,6 +33,7 @@ const DateSelect: React.FC<DateSelectProps> = ({
               {...params}
               sx={{ width: 250 }}
               name="date"
+              variant="standard"
               helperText={error}
               error={isError}
             />

@@ -26,7 +26,7 @@ import FormTitle from "../../../components/FormTitle/FormTitle";
 import DateSelect from "../../../components/EntryField/DateSelect";
 
 const AddOutLetter = () => {
-  // const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()));
+  const [date, setDate] = React.useState<Dayjs | null>(null);
   //const [file, setFile] = React.useState<any>("");
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -47,10 +47,10 @@ const AddOutLetter = () => {
     onSubmit: () => {},
   });
 
-  // const changeDate = (newValue: Dayjs | null) => {
-  //   setFieldValue("date", newValue, false);
-  //   setDate(newValue);
-  // };
+  const changeDate = (newValue: Dayjs | null) => {
+    setFieldValue("date", newValue, false);
+    setDate(newValue);
+  };
 
   // const onChange = (e: React.FormEvent<HTMLInputElement>) => {
   //   const files = (e.target as HTMLInputElement).files;
@@ -118,6 +118,7 @@ const AddOutLetter = () => {
                 {...formFields.executor}
               />
               <ButtonUpload
+                name="file"
                 fileSize={values.file.size}
                 onChange={handleChange}
                 caption={"Загрузить письмо: "}
@@ -126,19 +127,11 @@ const AddOutLetter = () => {
             </Box>
             <Box className={style.formControlArea}>
               <DateSelect
-                value={values.dateOrder}
-                changeDate={handleChange}
+                label="Дата получения письма"
+                value={date}
+                changeDate={changeDate}
                 error={errors.dateOrder as string}
                 isError={Boolean(touched.dateOrder)}
-              />
-              <EntryField
-                error={errors.letterTitle}
-                isError={
-                  Boolean(touched.letterTitle) && Boolean(errors.letterTitle)
-                }
-                value={values.letterTitle}
-                onChange={handleChange}
-                {...formFields.letterTitle}
               />
               <EntryField
                 error={errors.inNumber}
@@ -158,7 +151,8 @@ const AddOutLetter = () => {
                 {...formFields.responseToIncoming}
               />
               <ButtonUpload
-                fileSize={values.file.size}
+                name={"fileAppendix"}
+                fileSize={values.fileAppendix.size}
                 onChange={handleChange}
                 caption={"Загрузить приложение: "}
                 uploadFileExt={".zip"}

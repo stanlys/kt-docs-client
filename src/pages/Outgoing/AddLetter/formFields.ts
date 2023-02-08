@@ -10,21 +10,21 @@ import MoveToInboxIcon from "@mui/icons-material/MoveToInbox";
 export const formFields = {
   sender: {
     name: "sender",
-    required: false,
+    required: true,
     label: "Отправитель",
     icon: TransferWithinAStationIcon,
     finder: true,
   },
   receiver: {
     name: "receiver",
-    required: false,
+    required: true,
     label: "Получатель",
     icon: Person2Icon,
     finder: true,
   },
   letterTitle: {
     name: "letterTitle",
-    required: false,
+    required: true,
     label: "Заголовок письма",
     icon: DraftsIcon,
   },

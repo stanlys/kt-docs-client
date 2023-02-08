@@ -5,7 +5,8 @@ import { Box, Button, Checkbox, FormControl, FormLabel } from "@mui/material";
 import style from "./ButtonUpload.module.scss";
 
 interface ButtonUploadProps {
-  fileSize: number;
+  name: string;
+  fileSize: number | undefined;
   onChange: (e: React.ChangeEvent) => void;
   caption: string;
   uploadFileExt: string;
@@ -15,6 +16,7 @@ const ButtonUpload: React.FC<ButtonUploadProps> = ({
   fileSize,
   caption,
   onChange,
+  name,
   uploadFileExt,
 }) => {
   return (
@@ -34,7 +36,7 @@ const ButtonUpload: React.FC<ButtonUploadProps> = ({
         <input
           hidden
           accept={uploadFileExt}
-          name={"file"}
+          name={name}
           type="file"
           required
           onChange={onChange}

@@ -9,12 +9,13 @@ export interface ILetter {
   receiver: string;
   letterType: string;
   inNumber: string;
-  dateOrder: Dayjs;
+  dateOrder: Dayjs | null;
   executor: string;
   letterTitle: string;
   ResponseToIncoming: string;
   appendFile?: string;
   file: Blob;
+  fileAppendix: Blob;
 }
 
 export type ICreatedLetter = Omit<ILetter, "_id">;
