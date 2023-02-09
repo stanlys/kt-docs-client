@@ -11,7 +11,7 @@ import UploadTitle from "./UploaderTitle";
 const Uploader = () => {
   const [uploadStatus, setUploadStatus] = React.useState<string>("");
 
-  const getUploadParams = () => ({ url: API_ENDPOINTS.LETTER });
+  const getUploadParams = () => ({ url: API_ENDPOINTS.UPLOAD() });
 
   const handleChangeStatus = ({ meta }: IFileWithMeta, status: StatusValue) => {
     setUploadStatus(status);

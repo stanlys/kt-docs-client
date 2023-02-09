@@ -15,4 +15,7 @@ export const API_ENDPOINTS = {
   DELIVERY_BY_ID(id: string): string {
     return this.DELIVERY + `/${id}`;
   },
+  UPLOAD(): string {
+    return `${this.BASE}/upload`;
+  },
 };
