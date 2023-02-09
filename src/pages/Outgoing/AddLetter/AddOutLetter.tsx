@@ -24,11 +24,22 @@ import ButtonUpload from "../../../components/Buttons/ButtonUpload";
 import ButtonBack from "../../../components/Buttons/ButtonBack";
 import FormTitle from "../../../components/FormTitle/FormTitle";
 import DateSelect from "../../../components/EntryField/DateSelect";
+import "react-dropzone-uploader/dist/styles.css";
+import Dropzone, {
+  defaultClassNames,
+  IDropzoneProps,
+  IFileWithMeta,
+  ILayoutProps,
+  IPreviewProps,
+  StatusValue,
+} from "react-dropzone-uploader";
+import { boolean } from "yup";
 
 const AddOutLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(null);
   //const [file, setFile] = React.useState<any>("");
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const [uploadStatus, setUploadStatus] = React.useState<string>("");
 
   const { error } = useAppSelector((state) => state.postLetter);
   const dispatch = useAppDispatch();
@@ -78,6 +89,15 @@ const AddOutLetter = () => {
     }
   };
 
+  const getUploadParams: IDropzoneProps["getUploadParams"] = () => ({
+    url: "https://httpbin.org/post",
+  });
+
+  const handleSubmit: IDropzoneProps["onSubmit"] = (files, allFiles) => {
+    console.log(files.map((f) => f.meta));
+    allFiles.forEach((f) => f.remove());
+  };
+
   return (
     <Box>
       <FormTitle caption="Добавление исходящего письма"></FormTitle>
@@ -116,12 +136,6 @@ const AddOutLetter = () => {
                 onChange={handleChange}
                 {...formFields.executor}
               />
-              <ButtonUpload
-                fileSize={values.file.size}
-                onChange={handleChange}
-                uploadFileExt={".pdf, .doc, .docx"}
-                {...formFields.file}
-              />
             </Box>
             <Box className={style.formControlArea}>
               <DateSelect
@@ -148,14 +162,9 @@ const AddOutLetter = () => {
                 onChange={handleChange}
                 {...formFields.responseToIncoming}
               />
-              <ButtonUpload
-                fileSize={values.fileAppendix.size}
-                onChange={handleChange}
-                uploadFileExt={".zip"}
-                {...formFields.fileAppendix}
-              />
             </Box>
           </Box>
+          <CustomLayout />
           <Box>
             <Divider />
             <Box gap={2} display="flex" justifyContent={"center"} mt={2}>
@@ -175,6 +184,75 @@ const AddOutLetter = () => {
         </Paper>
       </Box>
     </Box>
+  );
+};
+
+const Layout = ({
+  input,
+  previews,
+  submitButton,
+  dropzoneProps,
+  files,
+  extra: { maxFiles },
+}: ILayoutProps) => {
+  return (
+    <div>
+      {previews}
+      <div {...dropzoneProps}>{files.length < maxFiles && input}</div>
+      {/* {files.length > 0 && submitButton} */}
+    </div>
+  );
+};
+
+const Preview = ({ meta }: IPreviewProps) => {
+  const { name, percent, status } = meta;
+  return (
+    <span style={{ alignSelf: "flex-start", margin: "10px 3%" }}>
+      {name}, {Math.round(percent)}%, {status}
+    </span>
+  );
+};
+
+const CustomLayout = () => {
+  const [uploadStatus, setUploadStatus] = React.useState<string>("");
+
+  const getUploadParams = () => ({ url: API_ENDPOINTS.BASE });
+
+  const handleChangeStatus = ({ meta }: IFileWithMeta, status: StatusValue) => {
+    setUploadStatus(status);
+  };
+
+  const handleSubmit = (
+    files: Array<IFileWithMeta>,
+    allFiles: Array<IFileWithMeta>
+  ) => {
+    console.log(files.map((f) => f.meta));
+    allFiles.forEach((f) => f.remove());
+  };
+
+  return (
+    <>
+      {uploadStatus != "" && <Typography variant="body1"> </Typography>}
+      <Dropzone
+        getUploadParams={getUploadParams}
+        LayoutComponent={Layout}
+        onChangeStatus={handleChangeStatus}
+        onSubmit={handleSubmit}
+        inputContent="перетащите либо загрузите"
+        inputWithFilesContent="дополните при необходимости"
+        styles={{
+          dropzone: {
+            overflow: "hidden",
+            width: 600,
+            height: 25,
+            border: "1px dashed gray",
+          },
+          dropzoneActive: { borderColor: "green" },
+          dropzoneReject: { borderColor: "red", backgroundColor: "#DAA" },
+          preview: {},
+        }}
+      />
+    </>
   );
 };
 
