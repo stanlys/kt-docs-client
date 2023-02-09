@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  Divider,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Divider, Paper } from "@mui/material";
 import { useFormik } from "formik";
 import style from "./AddOutLetter.module.scss";
 import React from "react";
@@ -17,23 +10,12 @@ import EntryField from "../../../components/EntryField/EntryField";
 import { formFields } from "./formFields";
 import { useSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { API_ENDPOINTS } from "../../../api/URL";
 import { ICreatedLetter } from "../../../interfaces/letter";
 import { createOutgoingLetter } from "../../../store/outgoing/thunks";
-import ButtonUpload from "../../../components/Buttons/ButtonUpload";
-import ButtonBack from "../../../components/Buttons/ButtonBack";
 import FormTitle from "../../../components/FormTitle/FormTitle";
 import DateSelect from "../../../components/EntryField/DateSelect";
 import "react-dropzone-uploader/dist/styles.css";
-import Dropzone, {
-  defaultClassNames,
-  IDropzoneProps,
-  IFileWithMeta,
-  ILayoutProps,
-  IPreviewProps,
-  StatusValue,
-} from "react-dropzone-uploader";
-import { boolean } from "yup";
+import Uploader from "../../../components/Uploader/Uploader";
 
 const AddOutLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(null);
@@ -89,20 +71,12 @@ const AddOutLetter = () => {
     }
   };
 
-  const getUploadParams: IDropzoneProps["getUploadParams"] = () => ({
-    url: "https://httpbin.org/post",
-  });
-
-  const handleSubmit: IDropzoneProps["onSubmit"] = (files, allFiles) => {
-    console.log(files.map((f) => f.meta));
-    allFiles.forEach((f) => f.remove());
-  };
-
   return (
     <Box>
       <FormTitle caption="Добавление исходящего письма"></FormTitle>
       <Box component={"form"} onSubmit={submitForm}>
         <Paper elevation={2} className={style.form}>
+          <Uploader />
           <Box className={style.formControl}>
             <Box className={style.formControlArea}>
               <EntryField
@@ -164,7 +138,6 @@ const AddOutLetter = () => {
               />
             </Box>
           </Box>
-          <CustomLayout />
           <Box>
             <Divider />
             <Box gap={2} display="flex" justifyContent={"center"} mt={2}>
@@ -184,75 +157,6 @@ const AddOutLetter = () => {
         </Paper>
       </Box>
     </Box>
-  );
-};
-
-const Layout = ({
-  input,
-  previews,
-  submitButton,
-  dropzoneProps,
-  files,
-  extra: { maxFiles },
-}: ILayoutProps) => {
-  return (
-    <div>
-      {previews}
-      <div {...dropzoneProps}>{files.length < maxFiles && input}</div>
-      {/* {files.length > 0 && submitButton} */}
-    </div>
-  );
-};
-
-const Preview = ({ meta }: IPreviewProps) => {
-  const { name, percent, status } = meta;
-  return (
-    <span style={{ alignSelf: "flex-start", margin: "10px 3%" }}>
-      {name}, {Math.round(percent)}%, {status}
-    </span>
-  );
-};
-
-const CustomLayout = () => {
-  const [uploadStatus, setUploadStatus] = React.useState<string>("");
-
-  const getUploadParams = () => ({ url: API_ENDPOINTS.BASE });
-
-  const handleChangeStatus = ({ meta }: IFileWithMeta, status: StatusValue) => {
-    setUploadStatus(status);
-  };
-
-  const handleSubmit = (
-    files: Array<IFileWithMeta>,
-    allFiles: Array<IFileWithMeta>
-  ) => {
-    console.log(files.map((f) => f.meta));
-    allFiles.forEach((f) => f.remove());
-  };
-
-  return (
-    <>
-      {uploadStatus != "" && <Typography variant="body1"> </Typography>}
-      <Dropzone
-        getUploadParams={getUploadParams}
-        LayoutComponent={Layout}
-        onChangeStatus={handleChangeStatus}
-        onSubmit={handleSubmit}
-        inputContent="перетащите либо загрузите"
-        inputWithFilesContent="дополните при необходимости"
-        styles={{
-          dropzone: {
-            overflow: "hidden",
-            width: 600,
-            height: 25,
-            border: "1px dashed gray",
-          },
-          dropzoneActive: { borderColor: "green" },
-          dropzoneReject: { borderColor: "red", backgroundColor: "#DAA" },
-          preview: {},
-        }}
-      />
-    </>
   );
 };
 
