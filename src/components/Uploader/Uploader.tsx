@@ -13,8 +13,13 @@ const Uploader = () => {
 
   const getUploadParams = () => ({ url: API_ENDPOINTS.UPLOAD() });
 
-  const handleChangeStatus = ({ meta }: IFileWithMeta, status: StatusValue) => {
+  const handleChangeStatus = (
+    { meta, xhr }: IFileWithMeta,
+    status: StatusValue
+  ) => {
     setUploadStatus(status);
+    console.log(meta);
+    if (status === "done") console.log(JSON.parse(xhr?.response));
   };
 
   const handleSubmit = (
@@ -33,6 +38,7 @@ const Uploader = () => {
         LayoutComponent={Layout}
         onChangeStatus={handleChangeStatus}
         onSubmit={handleSubmit}
+        autoUpload
         inputContent={
           <UploadTitle title="загрузите приложение" key={"uploader"} />
         }
