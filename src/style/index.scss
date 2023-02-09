@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  // background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,6 +16,10 @@
 }
 
 $form-margin-top: 1rem;
+
+$font-link-color: #37474f;
+$font-hover-color: #607d8b;
+$bg-link-hover: #b0bec5;
 
 @mixin flex-column {
   display: flex;
@@ -31,11 +35,11 @@ $form-margin-top: 1rem;
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: $font-link-color;
     background-color: #ffffff;
   }
   a:hover {
-    color: darkgray;
+    color: $font-hover-color;
   }
   button {
     background-color: #f9f9f9;
@@ -44,5 +48,5 @@ $form-margin-top: 1rem;
 
 a {
   text-decoration: none;
-  color: #213547;
+  color: $font-link-color;
 }

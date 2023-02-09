@@ -6,6 +6,7 @@ import Dropzone, {
   StatusValue,
 } from "react-dropzone-uploader";
 import { API_ENDPOINTS } from "../../api/URL";
+import UploadTitle from "./UploaderTitle";
 
 const Uploader = () => {
   const [uploadStatus, setUploadStatus] = React.useState<string>("");
@@ -32,8 +33,12 @@ const Uploader = () => {
         LayoutComponent={Layout}
         onChangeStatus={handleChangeStatus}
         onSubmit={handleSubmit}
-        inputContent="перетащите либо загрузите"
-        inputWithFilesContent="дополните при необходимости"
+        inputContent={
+          <UploadTitle title="загрузите приложение" key={"uploader"} />
+        }
+        inputWithFilesContent={
+          <UploadTitle title="дополните при необходимости" key={"uploader2"} />
+        }
         styles={{
           dropzone: {
             overflow: "hidden",
