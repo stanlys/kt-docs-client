@@ -26,6 +26,8 @@ const AddOutLetter = () => {
   const { error } = useAppSelector((state) => state.postLetter);
   const dispatch = useAppDispatch();
 
+  const inFile = [];
+
   const {
     values,
     errors,
@@ -70,12 +72,14 @@ const AddOutLetter = () => {
     }
   };
 
-  const onDone = (document: IDocument) => {
+  const onDone = async (document: IDocument) => {
     // console.log("->", files);
     // if (files.length === 0) setFiles([document]);
     // else setFiles((files) => [...files, document]);
-    setFieldValue("files", [...values.files, document]);
-    console.log("<-", values);
+    //console.log("->", document);
+    inFile.push(document);
+    //await setFieldValue("files", [...values.files, document]);
+    console.log("<-", inFile);
   };
 
   return (
