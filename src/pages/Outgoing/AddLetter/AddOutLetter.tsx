@@ -10,16 +10,16 @@ import EntryField from "../../../components/EntryField/EntryField";
 import { formFields } from "./formFields";
 import { useSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { ICreatedLetter } from "../../../interfaces/letter";
 import { createOutgoingLetter } from "../../../store/outgoing/thunks";
 import FormTitle from "../../../components/FormTitle/FormTitle";
 import DateSelect from "../../../components/EntryField/DateSelect";
 import "react-dropzone-uploader/dist/styles.css";
 import Uploader from "../../../components/Uploader/Uploader";
+import { IDocument } from "../../../interfaces/letter";
 
 const AddOutLetter = () => {
   const [date, setDate] = React.useState<Dayjs | null>(null);
-  //const [file, setFile] = React.useState<any>("");
+  const [files, setFiles] = React.useState<Array<IDocument>>([]);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [uploadStatus, setUploadStatus] = React.useState<string>("");
 
@@ -54,21 +54,28 @@ const AddOutLetter = () => {
 
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("file", values.file);
-    formData.append("sender", values.sender);
-    formData.append("date", values.date.toString());
-    formData.append("receiver", values.receiver);
-    console.log(formData);
-    dispatch(createOutgoingLetter(formData));
+    // const formData = new FormData();
+    // formData.append("file", values.files);
+    // formData.append("sender", values.sender);
+    // formData.append("date", values.date.toString());
+    // formData.append("receiver", values.receiver);
+    console.log(values);
+    //dispatch(createOutgoingLetter(formData));
     //console.log(addedLetter);
     if (error == null) {
       enqueueSnackbar("письмо добавлено", { variant: "success" });
       handleReset(e);
-      //changeDate(dayjs(Date.now()));
     } else {
       enqueueSnackbar("ошибка добавления", { variant: "error" });
     }
+  };
+
+  const onDone = (document: IDocument) => {
+    // console.log("->", files);
+    // if (files.length === 0) setFiles([document]);
+    // else setFiles((files) => [...files, document]);
+    setFieldValue("files", [...values.files, document]);
+    console.log("<-", values);
   };
 
   return (
@@ -76,7 +83,7 @@ const AddOutLetter = () => {
       <FormTitle caption="Добавление исходящего письма"></FormTitle>
       <Box component={"form"} onSubmit={submitForm}>
         <Paper elevation={2} className={style.form}>
-          <Uploader />
+          <Uploader onDone={onDone} />
           <Box className={style.formControl}>
             <Box className={style.formControlArea}>
               <EntryField

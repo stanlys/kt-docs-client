@@ -6,7 +6,6 @@ import {
 } from "@mui/material";
 import React, { useEffect } from "react";
 import "@inovua/reactdatagrid-community/index.css";
-import { dataSource } from "../../MOCK/data";
 import { filterValue } from "../../components/Grid/OutLetter/OutFilter";
 import {
   OUT_LETTER_COLUMNS,

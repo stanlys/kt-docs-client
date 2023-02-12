@@ -8,7 +8,11 @@ import Dropzone, {
 import { API_ENDPOINTS } from "../../api/URL";
 import UploadTitle from "./UploaderTitle";
 
-const Uploader = () => {
+interface UploaderProps {
+  onDone: (a: any) => void;
+}
+
+const Uploader: React.FC<UploaderProps> = ({ onDone }) => {
   const [uploadStatus, setUploadStatus] = React.useState<string>("");
 
   const getUploadParams = () => ({ url: API_ENDPOINTS.UPLOAD() });
@@ -18,8 +22,10 @@ const Uploader = () => {
     status: StatusValue
   ) => {
     setUploadStatus(status);
-    console.log(meta);
-    if (status === "done") console.log(JSON.parse(xhr?.response));
+    if (status === "done") {
+      console.log(JSON.parse(xhr?.response));
+      onDone(JSON.parse(xhr?.response));
+    }
   };
 
   const handleSubmit = (

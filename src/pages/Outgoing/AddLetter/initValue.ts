@@ -12,6 +12,5 @@ export const INIT_ADD_LETTER: ICreatedLetter = {
   letterTitle: "",
   responseToIncoming: "",
   appendFile: "",
-  file: new Blob(),
-  fileAppendix: new Blob(),
+  files: [],
 };

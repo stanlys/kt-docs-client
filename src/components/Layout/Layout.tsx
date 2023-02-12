@@ -65,7 +65,7 @@ const DashboardContent = () => {
             height: "89vh",
           }}
         >
-          <Box sx={{ m: 2, width: "98%", minHeight: "90%" }}>
+          <Box sx={{ m: 2, minHeight: "90%" }}>
             <Paper sx={{ minWidth: "100%", minHeight: "91vh", p: 2 }}>
               <Outlet />
             </Paper>

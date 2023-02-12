@@ -1,5 +1,12 @@
 import { Dayjs } from "dayjs";
-import { string } from "prop-types";
+
+export interface IDocument {
+  _id: string;
+  fileName: string;
+  path: string;
+  size: number;
+  dateTime: Date;
+}
 
 export interface ILetter {
   _id: string;
@@ -14,8 +21,7 @@ export interface ILetter {
   letterTitle: string;
   responseToIncoming: string;
   appendFile?: string;
-  file: Blob;
-  fileAppendix: Blob;
+  files: Array<IDocument>;
 }
 
 export type ICreatedLetter = Omit<ILetter, "_id">;
