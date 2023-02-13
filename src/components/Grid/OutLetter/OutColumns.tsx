@@ -43,7 +43,7 @@ export const OUT_LETTER_COLUMNS: TypeColumn[] = [
       placeholder: "введите дату",
     },
     render: ({ value }: { value: string }) => {
-      return value === " " ? "-" : moment(value).format("DD.MM.YYYY");
+      return value === null ? "-" : moment(value).format("DD.MM.YYYY");
     },
   },
   {

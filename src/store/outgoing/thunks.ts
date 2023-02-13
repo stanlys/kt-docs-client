@@ -22,7 +22,7 @@ export const getAllOutgoingLetter = createAsyncThunk<
 
 export const createOutgoingLetter = createAsyncThunk<
   ILetter,
-  FormData,
+  ICreatedLetter,
   { rejectValue: string }
 >("outgoing/create", async (createdLetter, { rejectWithValue }) => {
   try {

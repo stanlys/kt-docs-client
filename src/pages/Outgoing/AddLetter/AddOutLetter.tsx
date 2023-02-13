@@ -56,12 +56,11 @@ const AddOutLetter = () => {
 
   useEffect(() => {
     setFieldValue("files", files);
-    console.log("files:", files);
   }, [files]);
 
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+    dispatch(createOutgoingLetter(values));
     console.log(values);
     if (error == null) {
       enqueueSnackbar("письмо добавлено", { variant: "success" });
@@ -73,14 +72,6 @@ const AddOutLetter = () => {
 
   const onDone = async (document: IDocument) => {
     setFiles((files) => [...files, document]);
-    console.log(document);
-    // console.log("->", files);
-    // if (files.length === 0) setFiles([document]);
-    // else setFiles((files) => [...files, document]);
-    //console.log("->", document);
-    inFile.push(document);
-    //await setFieldValue("files", [...values.files, document]);
-    //console.log("<-", inFile);
   };
 
   return (
