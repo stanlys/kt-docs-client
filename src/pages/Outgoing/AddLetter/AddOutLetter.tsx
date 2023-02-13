@@ -1,7 +1,7 @@
 import { Box, Button, Divider, Paper } from "@mui/material";
 import { useFormik } from "formik";
 import style from "./AddOutLetter.module.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/ru";
 import { INIT_ADD_LETTER } from "./initValue";
@@ -54,16 +54,15 @@ const AddOutLetter = () => {
   //   }
   // };
 
+  useEffect(() => {
+    setFieldValue("files", files);
+    console.log("files:", files);
+  }, [files]);
+
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    // const formData = new FormData();
-    // formData.append("file", values.files);
-    // formData.append("sender", values.sender);
-    // formData.append("date", values.date.toString());
-    // formData.append("receiver", values.receiver);
+    
     console.log(values);
-    //dispatch(createOutgoingLetter(formData));
-    //console.log(addedLetter);
     if (error == null) {
       enqueueSnackbar("письмо добавлено", { variant: "success" });
       handleReset(e);
@@ -73,13 +72,15 @@ const AddOutLetter = () => {
   };
 
   const onDone = async (document: IDocument) => {
+    setFiles((files) => [...files, document]);
+    console.log(document);
     // console.log("->", files);
     // if (files.length === 0) setFiles([document]);
     // else setFiles((files) => [...files, document]);
     //console.log("->", document);
     inFile.push(document);
     //await setFieldValue("files", [...values.files, document]);
-    console.log("<-", inFile);
+    //console.log("<-", inFile);
   };
 
   return (
