@@ -8,6 +8,7 @@ import Settings from "./pages/Settings/Settings";
 import Outgoing from "./pages/Outgoing/Outgoing";
 import ListDelivery from "./pages/Settings/Delivery/List/ListDelivery";
 import AddOutLetter from "./pages/Outgoing/AddLetter/AddOutLetter";
+import FileList from "./components/FileList/FileList";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "addin",
         element: <AddOutLetter />,
+      },
+      {
+        path: "filelist",
+        element: <FileList />,
       },
       {
         path: "setting",

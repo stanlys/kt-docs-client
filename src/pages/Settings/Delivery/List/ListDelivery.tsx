@@ -43,7 +43,6 @@ const ListDelivery = () => {
                 <TableCell align="left">
                   <IconButton
                     onClick={() => {
-                      console.log("delete");
                       dispatch(deleteDeliveryOrganization(postman._id));
                     }}
                   >
