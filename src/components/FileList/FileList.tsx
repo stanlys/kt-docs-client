@@ -6,6 +6,7 @@ import { IDocument } from "../../interfaces/letter";
 import { useAppDispatch } from "../../store/hooks";
 import { getLetter } from "../../api/letter";
 import { API_ENDPOINTS } from "../../api/URL";
+import { useLocation } from "react-router";
 
 const INITIAL_STATE: IDocument = {
   _id: "",
@@ -49,8 +50,11 @@ const FileList = () => {
   const a = formatBytes(10);
   const [docs, setDocs] = useState<IDocument>(INITIAL_STATE);
 
+  const { state } = useLocation();
+  console.log(state.objectId);
+
   const dispatch = useAppDispatch();
-  
+
   useEffect(() => {
     //dispatch(getLetter)
   }, []);
