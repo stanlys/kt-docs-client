@@ -21,6 +21,7 @@
     "@mui/styled-engine-sc": "^5.11.0",
     "@mui/x-data-grid": "^5.17.19",
     "@mui/x-date-pickers": "^5.0.15",
+    "@pdftron/webviewer": "^8.11.0",
     "@reduxjs/toolkit": "^1.9.1",
     "@types/react-redux": "^7.1.25",
     "axios": "^1.2.4",

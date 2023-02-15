@@ -1,12 +1,12 @@
-import { Box, List, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Divider, List, Typography } from "@mui/material";
+import React, { useEffect, useState, useRef } from "react";
 import { formatBytes } from "react-dropzone-uploader";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import { IDocument } from "../../interfaces/letter";
 import { useAppDispatch } from "../../store/hooks";
-import { getLetter } from "../../api/letter";
 import { API_ENDPOINTS } from "../../api/URL";
 import { useLocation } from "react-router";
+import WebViewer from "@pdftron/webviewer";
 
 const INITIAL_STATE: IDocument = {
   _id: "",
@@ -49,6 +49,7 @@ const MyLoadingRenderer = ({ document, fileName }) => {
 const FileList = () => {
   const a = formatBytes(10);
   const [docs, setDocs] = useState<IDocument>(INITIAL_STATE);
+  const viewer = useRef<HTMLDivElement>(null);
 
   const { state } = useLocation();
   console.log(state.objectId);
@@ -64,9 +65,33 @@ const FileList = () => {
     { uri: `${API_ENDPOINTS.BASE}/2023/2023-02-13-164222.doc` },
     { uri: `${API_ENDPOINTS.BASE}/2023/2023-02-13-164554.xlsx` },
   ];
+
+  useEffect(() => {
+    WebViewer(
+      {
+        path: "/lib",
+        initialDoc: `${API_ENDPOINTS.BASE}/2023/2023-02-13-164222.doc`,
+      },
+      viewer.current as HTMLDivElement
+    ).then((instance) => {
+      const { documentViewer } = instance.Core;
+      // you can now call WebViewer APIs here...
+    });
+  }, []);
+
   return (
     <Box>
       <List></List>
+      <div className="MyComponent">
+        <div className="header">React sample</div>
+        <div
+          className="webviewer"
+          ref={viewer}
+          style={{ height: "100vh" }}
+        ></div>
+      </div>
+      <Divider />
+
       <DocViewer
         documents={MOCK_DOCS}
         pluginRenderers={DocViewerRenderers}
