@@ -53,3 +53,36 @@ export const deleteOutgoingLetterById = createAsyncThunk<
     return rejectWithValue(error.message);
   }
 });
+
+// export const getOutgoingLetterById = createAsyncThunk<
+//   ILetter | string,
+//   string,
+//   { rejectValue: string }
+// >("outgoing/getbyid", async (id, { rejectWithValue }) => {
+//   try {
+//     const letter: AxiosResponse<ILetter> = await axiosInstance.get(
+//       API_ENDPOINTS.OUTGIONG_BY_ID(id)
+//     );
+//     return letter;
+//   } catch (err) {
+//     const error = err as AxiosError;
+//     return rejectWithValue(error.message);
+//   }
+// });
+
+
+export const getOutgoingLetterById = createAsyncThunk<
+  ILetter,
+  string,
+  { rejectValue: string }
+>("outgoing/delete", async (id, { rejectWithValue }) => {
+  try {
+    const letter: AxiosResponse<ILetter> = await axiosInstance.get(
+      API_ENDPOINTS.OUTGIONG_BY_ID(id)
+    );
+    return letter.data;
+  } catch (err) {
+    const error = err as AxiosError;
+    return rejectWithValue(error.message);
+  }
+});
