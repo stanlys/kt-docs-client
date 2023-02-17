@@ -4,6 +4,7 @@ import {
   createOutgoingLetter,
   deleteOutgoingLetterById,
   getAllOutgoingLetter,
+  getOutgoingLetterById,
 } from "./thunks";
 
 const initialState: ILoadLetter = {
@@ -58,7 +59,24 @@ export const OutgoingSlice = createSlice({
           );
         }
       )
-      .addCase(deleteOutgoingLetterById.rejected, (state, action) => {
+      .addCase(getOutgoingLetterById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(deleteOutgoingLetterById.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(
+        getOutgoingLetterById.fulfilled,
+        (state, action: PayloadAction<ILetter>) => {
+          state.isLoading = false;
+          state.letters = state.letters.filter(
+            (letter) => letter._id != action.payload._id
+          );
+        }
+      )
+      .addCase(getOutgoingLetterById.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
       });
