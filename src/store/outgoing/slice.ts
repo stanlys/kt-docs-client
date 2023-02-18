@@ -59,11 +59,11 @@ export const OutgoingSlice = createSlice({
           );
         }
       )
-      .addCase(getOutgoingLetterById.rejected, (state, action) => {
+      .addCase(deleteOutgoingLetterById.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
       })
-      .addCase(deleteOutgoingLetterById.pending, (state) => {
+      .addCase(getOutgoingLetterById.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
