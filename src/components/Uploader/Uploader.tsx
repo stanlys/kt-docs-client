@@ -49,7 +49,7 @@ const Uploader: React.FC<UploaderProps> = ({ onDone }) => {
           <UploadTitle title="загрузите приложение" key={"uploader"} />
         }
         inputWithFilesContent={
-          <UploadTitle title="дополните при необходимости" key={"uploader2"} />
+          <UploadTitle title="дополните при необходимости" key={"uploader"}/>
         }
         styles={{
           dropzone: {

@@ -9,6 +9,7 @@ import Outgoing from "./pages/Outgoing/Outgoing";
 import ListDelivery from "./pages/Settings/Delivery/List/ListDelivery";
 import AddOutLetter from "./pages/Outgoing/AddLetter/AddOutLetter";
 import FileList from "./components/FileList/FileList";
+import Additional from "./pages/Settings/Delivery/Additional/Additional";
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +45,7 @@ export const router = createBrowserRouter([
         children: [
           { path: "address", element: <div>Добавление адреса</div> },
           { path: "delivery", element: <ListDelivery /> },
-          { path: "additional", element: <div>Дополнительные настройки</div> },
+          { path: "additional", element: <Additional /> },
         ],
       },
     ],
