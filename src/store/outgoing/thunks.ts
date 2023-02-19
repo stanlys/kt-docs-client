@@ -70,12 +70,11 @@ export const deleteOutgoingLetterById = createAsyncThunk<
 //   }
 // });
 
-
 export const getOutgoingLetterById = createAsyncThunk<
   ILetter,
   string,
   { rejectValue: string }
->("outgoing/delete", async (id, { rejectWithValue }) => {
+>("outgoing/getbyid", async (id, { rejectWithValue }) => {
   try {
     const letter: AxiosResponse<ILetter> = await axiosInstance.get(
       API_ENDPOINTS.OUTGIONG_BY_ID(id)

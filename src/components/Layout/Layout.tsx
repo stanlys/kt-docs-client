@@ -39,6 +39,7 @@ const DashboardContent = () => {
       <CssBaseline />
       <KTHeader />
       <Box
+        component="main"
         sx={{
           display: "flex",
           backgroundColor: (theme) =>
@@ -52,24 +53,10 @@ const DashboardContent = () => {
           subMenu={secondaryListItems}
           elevation={1}
         />
-        <Box
-          component="main"
-          sx={{
-            mt: 0,
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            overflow: "none",
-            height: "89vh",
-          }}
-        >
-          <Box sx={{ m: 2, minHeight: "90%" }}>
-            <Paper sx={{ minWidth: "100%", minHeight: "91vh", p: 2 }}>
-              <Outlet />
-            </Paper>
-          </Box>
+        <Box sx={{ m: 2, minHeight: "90%" }} flexGrow={1}>
+          <Paper sx={{ p: 2 }}>
+            <Outlet />
+          </Paper>
         </Box>
       </Box>
       <StickyFooter />
