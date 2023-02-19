@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { formatBytes } from "react-dropzone-uploader";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import { IDocument } from "../../interfaces/letter";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { API_ENDPOINTS } from "../../api/URL";
 import { useLocation } from "react-router";
 import WebViewer from "@pdftron/webviewer";
@@ -51,8 +51,11 @@ const FileList = () => {
   const [docs, setDocs] = useState<IDocument>(INITIAL_STATE);
   const viewer = useRef<HTMLDivElement>(null);
 
-  const { state } = useLocation();
-  console.log(state.objectId);
+  const { state: stateId } = useLocation();
+  const letter = useAppSelector((state) =>
+    state.outgoing.letters.find((letter) => letter._id === stateId.objectId)
+  );
+  console.log(stateId, " See - ", letter);
 
   const dispatch = useAppDispatch();
 
